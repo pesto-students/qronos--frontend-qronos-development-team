@@ -1,19 +1,20 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css'
 import './index.css'
-// import { Link } from 'react-router-dom';
-import Signup from './components/user_dashboard/Signup';
+import Dashboard from './components/dashboard/Dashboard';
 import Home from './components/Home/Home';
-import Header from './components/Layout/Header/Header';
-
+import Signup from './components/Home/Signup';
+import Aboutus from './components/Home/Aboutus';
 function App() {
     return (
         <div>
             <BrowserRouter>
-                <Header />
+
                 <Routes>
                     <Route index element={<Home />} />
-                    <Route path='/dashboard' element={<Signup />} />
+                    <Route path='/dashboard' element={<Dashboard />} />
+                    <Route path='/signup' element={<Signup />} />
+                    <Route path='/about' element={<Aboutus />} />
                 </Routes>
             </BrowserRouter>
         </div>
