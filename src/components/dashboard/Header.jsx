@@ -110,8 +110,8 @@ const Header = () => {
                     </ul>
                     {
                         isAuthenticated ?
-                            (<button class="hidden bg-black text-white font-bold text-sm lg:block px-6 py-3" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>Logout</button>) :
-                            (<button class="hidden bg-black text-white font-bold text-sm lg:block px-6 py-3" onClick={() => loginWithRedirect()}>Login</button>)
+                            (<button class="hidden bg-black text-white font-bold text-sm lg:block px-6 py-3" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>Logout</button>)
+                            : (<button class="hidden bg-black text-white font-bold text-sm lg:block px-6 py-3" onClick={() => loginWithRedirect()}>Login</button>)
 
 
                     }
