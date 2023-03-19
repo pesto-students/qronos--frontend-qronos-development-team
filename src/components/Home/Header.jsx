@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import '../../index.css';
+import './index.css';
 import { useAuth0 } from "@auth0/auth0-react";
+import { useState } from 'react';
 const Header = () => {
     const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
 
-
+    const [open, setopen] = useState(false);
 
 
     return (
@@ -116,9 +117,6 @@ const Header = () => {
 
                     }
                     <button class="hidden lg:block px-6 py-3 text-sm text-white hover:text-gray-700 font-bold border border-gray-100 rounded bg-black" contenteditable="false">Sign up</button>
-
-
-
                 </div>
                 <div class="hidden navbar-menu fixed top-0 left-0 bottom-0 w-5/6 max-w-sm z-50">
                     <div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
