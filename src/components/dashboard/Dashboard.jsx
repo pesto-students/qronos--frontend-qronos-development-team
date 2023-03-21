@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './dashboard.css'
 import Trying from './Trying'
-function Dashboard() {
+function Dashboard() => {
   return (
 
 
