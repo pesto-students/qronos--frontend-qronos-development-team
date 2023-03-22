@@ -1,5 +1,5 @@
 import React from 'react'
-
+import '../dashboard.css'
 const APIview = () => {
   return (
     <div>
@@ -26,9 +26,91 @@ const APIview = () => {
 
 
 
+        <div class="pt-5 bg-neutral-50 border border-neutral-100 rounded-xl">
+          <div class="px-6">
+
+            <div class="w-full overflow-x-auto">
+              <table class="w-full min-w-max">
+                <thead><tr class="text-left">
+                  <th class="p-0 border-b border-neutral-100">
+                    <div class="pb-3.5"><a class="text-sm text-gray-400 font-medium uppercase" href="#">Sapce ID</a></div>
+                  </th>
+                  <th class="p-0 border-b border-neutral-100">
+                    <div class="pb-3.5"><a class="text-sm text-gray-400 font-medium" href="#">API</a></div>
+                  </th>
+
+
+
+                  <th class="p-0 border-b border-neutral-100">
+                    <div class="pb-3.5"><a class="text-sm text-gray-400 font-medium" href="#">Resolved</a></div>
+                  </th>
+                  <th class="p-0 border-b border-neutral-100">
+                    <div class="pb-3.5"></div>
+                  </th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td class="py-3 pr-4 border-b border-neutral-100"><span class="text-sm">3849</span></td>
+                    <td class="py-3 pr-4 border-b border-neutral-100"><span class="text-sm">15454556RFAGVHDSFF</span></td>
+
+
+
+
+                    <td class="py-3 border-b border-neutral-100"><a href="#">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="9.25" fill="white" stroke="#B8C1CC" stroke-width="1.5"></circle><path d="M13.5 8.5L10 12L6.5 8.5" stroke="#B8C1CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 pr-4 border-b border-neutral-100"><span class="text-sm">3849</span></td>
+                    <td class="py-3 pr-4 border-b border-neutral-100"><span class="text-sm">15454556RFAGVHDSFF</span></td>
+
+
+
+
+                    <td class="py-3 border-b border-neutral-100"><a href="#">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="9.25" fill="white" stroke="#B8C1CC" stroke-width="1.5"></circle><path d="M13.5 8.5L10 12L6.5 8.5" stroke="#B8C1CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 pr-4 border-b border-neutral-100"><span class="text-sm">3849</span></td>
+                    <td class="py-3 pr-4 border-b border-neutral-100"><span class="text-sm">15454556RFAGVHDSFF</span></td>
+
+
+
+
+                    <td class="py-3 border-b border-neutral-100"><a href="#">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"></path></svg></a></td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 pr-4 border-b border-neutral-100"><span class="text-sm">3849</span></td>
+                    <td class="py-3 pr-4 border-b border-neutral-100"><span class="text-sm">15454556RFAGVHDSFF</span></td>
+
+
+
+
+                    <td class="py-3 border-b border-neutral-100"><a href="#">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"></path></svg></a></td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 pr-4"><span class="text-sm">3849</span></td>
+                    <td class="py-3 pr-4"><span class="text-sm">15454556RFAGVHDSFF</span></td>
+
+
+
+
+                    <td class="py-3"><a href="#">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="9.25" fill="white" stroke="#B8C1CC" stroke-width="1.5"></circle><path d="M13.5 8.5L10 12L6.5 8.5" stroke="#B8C1CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+
+
       </section>
 
-      <section class="py-4 overflow-hidden"><div class="container px-4 mx-auto">
+      {/*<section class="py-4 overflow-hidden">
+      <div class="container px-4 mx-auto">
         <div class="pt-5 bg-neutral-50 border border-neutral-100 rounded-xl">
           <div class="px-6">
 
@@ -109,7 +191,7 @@ const APIview = () => {
         </div>
       </div>
       </section>
-
+  */}
 
     </div>
 

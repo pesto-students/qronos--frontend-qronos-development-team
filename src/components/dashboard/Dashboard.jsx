@@ -1,19 +1,74 @@
 import React from 'react'
 import './dashboard.css'
+import { useState } from 'react'
 import DashbordHomeview from './components/DashbordHomeview'
 import Contentview from './components/Contentview'
 import Userprofile from './components/Userprofile'
 import LoadImages from './components/LoadImages'
 import APIview from './components/APIview'
 const Dashboard = () => {
+  const [activeComponent, setActiveComponent] = useState('Dashboard');
+  const [open, setopen] = useState(true)
+  const Menus = [
+    {
+      title: "Dashboard", icon: "dashy-assets/images/adjustments.svg"
+    },
+    { title: "API", spacing: true, icon: "dashy-assets/images/cog.svg" },
+    { title: "MediaLibrary", icon: "dashy-assets/images/bell.svg", },
+    { title: "User", icon: "dashy-assets/images/bell.svg" },
+    { title: "Medialibrary" },
+    { title: "Documentation", icon: "dashy-assets/images/question-mark-circle.svg" },
+    {
+      title: "Settings",
+      spacing: true,
+      submenuitems: [
+        { title: "api" },
+        { title: "users" }
+      ],
+      icon: "dashy-assets/images/user-circle.svg"
+    }
+
+  ]
+
+  const handleTitleClick = (title) => {
+    setActiveComponent(title);
+  };
+
+
+
+
   return (
 
     <body class="antialiased bg-body text-body font-body">
 
-      <div class="">
 
-        <section class="relative">
-          <nav class="flex xl:hidden items-center justify-between py-3.5 px-7 bg-neutral-50">
+
+      <section class="flex">
+
+        <div class={` bg-gray-200 p-5 ${open ? "w-50" : "w-20"} rounded-lg duration-300 relative `}>
+
+
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class={`bg-red-100 rounded-full absolute bottom-9  ${!open && "rotate-180"} -right-2 border-black-500 w-6 h-6`} onClick={() => setopen(!open)}>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+          </svg>
+
+          <div >
+            <img src="gradia-assets/images/Logomark.png" alt="Logo" class={`w-20 duration-300 ${open && "rotate-[360deg]"}   `} />
+          </div>
+          <ul class="pt-2">
+            {Menus.map(menu => (
+              <li class="flex text-gray-500 text-sm items-center gap-x-4 cursor-pointer p-2 hover:bg-light-red" onClick={() => handleTitleClick(menu.title)}>
+                <img src={menu.icon} alt="icons" class={`relative ${!open ? "w-18" : "w-50"}`} />
+                <span class={`text-base font-medium flex-1 ${!open && "hidden"}`}>{menu.title}</span>
+              </li>
+            ))}
+          </ul>
+
+
+
+        </div>
+
+        {/*    <nav class="flex xl:hidden items-center justify-between py-3.5 px-7 bg-neutral-50">
             <div class="w-full xl:w-auto px-2 xl:mr-10">
               <div class="flex items-center justify-between">
                 <p class="inline-flex items-center h-7">
@@ -29,8 +84,10 @@ const Dashboard = () => {
               </div>
             </div>
           </nav>
+          
           <div class="navbar-menu relative z-50 hidden xl:flex xl:flex-col">
-            <div class="navbar-backdrop fixed xl:hidden inset-0 bg-gray-800 opacity-10"></div>
+            <div class="navbar-backdrop fixed xl:hidden inset-0 bg-gray-800 opacity-10">
+            </div>
             <div class="fixed inset-0 w-16 bg-white">
               <div class="flex justify-center py-4 bg-white"><img src="gradia-assets/images/Logomark.png" alt="" /></div>
               <div class="flex-1 flex flex-col justify-between pt-8 overflow-x-hidden overflow-y-auto">
@@ -51,51 +108,48 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
-          </div>
+  </div> */}
 
-
-          <div class="mx-auto xl:ml-16 xl:pl-4">
-            <div class="container mx-auto">
-              <Userprofile />
-              <APIview />
-              <DashbordHomeview />
-              <Contentview />
-
-
-
-
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <div class="mx-auto xl:ml-16 xl:pl-4">
+          <div class="container mx-auto">
+            {activeComponent === 'Dashboard' && <DashbordHomeview />}
+            {activeComponent === 'API' && <APIview />}
+            {activeComponent === 'User' && <Userprofile />}
+            {activeComponent === 'MediaLibrary' && <LoadImages />}
 
 
           </div>
-        </section>
-
-      </div>
 
 
 
 
 
-      {/*Pagination */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+      </section>
+
+
+
+
+
+
+
+      {/*Pagination 
 
       <section class="py-3">
         <div class="container px-4 mx-auto">
@@ -128,7 +182,7 @@ const Dashboard = () => {
           </div>
         </div>
       </section>
-
+*/}
 
 
 
