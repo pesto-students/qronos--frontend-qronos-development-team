@@ -24,12 +24,12 @@ const SalesModal = () => {
               </label>
             </div>
             <label class="block mb-2 text-xs text-gray-700 uppercase tracking-wide font-bold">Text input</label>
-            <input class="appearance-none block w-full py-3 px-4 mb-2 md:mb-0 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" type="text" placeholder="Enter text"><label class="block mb-2 text-xs text-gray-700 uppercase tracking-wide font-bold">Text input</label>
-              <input class="appearance-none block w-full py-3 px-4 mb-2 md:mb-0 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" type="text" placeholder="Enter text"><label class="block mb-2 text-xs text-gray-700 uppercase tracking-wide font-bold">Example select</label>
-                <select class="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none"><option>-- Select product --</option><option>Product 1</option><option>Product 2</option><option>Product 3</option></select><label class="block mb-2 text-xs text-gray-700 uppercase tracking-wide font-bold">Example textarea</label>
-                <textarea class="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" placeholder="Write something..." rows="5" /></textarea><div class="mb-4">
-                <button class="inline-block w-full py-4 px-8 leading-none text-white bg-indigo-500 hover:bg-indigo-600 rounded shadow">Send now</button>
-              </div>
+            <input class="appearance-none block w-full py-3 px-4 mb-2 md:mb-0 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" type="text" placeholder="Enter text" /><label class="block mb-2 text-xs text-gray-700 uppercase tracking-wide font-bold">Text input</label>
+            <input class="appearance-none block w-full py-3 px-4 mb-2 md:mb-0 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" type="text" placeholder="Enter text" /><label class="block mb-2 text-xs text-gray-700 uppercase tracking-wide font-bold">Example select</label>
+            <select class="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none"><option>-- Select product --</option><option>Product 1</option><option>Product 2</option><option>Product 3</option></select><label class="block mb-2 text-xs text-gray-700 uppercase tracking-wide font-bold">Example textarea</label>
+            <textarea class="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" placeholder="Write something..." rows="5" ></textarea><div class="mb-4">
+              <button class="inline-block w-full py-4 px-8 leading-none text-white bg-indigo-500 hover:bg-indigo-600 rounded shadow">Send now</button>
+            </div>
           </form>
         </div>
 
@@ -38,7 +38,7 @@ const SalesModal = () => {
 
       </div>
     </div>
-    </section>
+    </section >
 
 
 
