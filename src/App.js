@@ -12,9 +12,31 @@ import LoadImages from './components/dashboard/LoadImages';
 import Userprofile from './components/dashboard/Userprofile';
 import { useAuth0 } from '@auth0/auth0-react';
 import ContentEntry from './components/dashboard/ContentEntry';
-function App() {
-    const { isAuthenticated } = useAuth0();
+import { useEffect } from 'react';
+import axios from 'axios';
+import Header from './components/Home/Header';
+import Footer from './components/Home/Footer';
 
+
+function App() {
+    const { isAuthenticated, user } = useAuth0();
+    console.log(user);
+
+    const apiCallUser = async () => {
+        console.log(user.email);
+        await axios.get(`http://localhost:8080/get-user`, {
+            params: {
+                emailId: user.email,
+                name: user.name
+            }
+        })
+    }
+
+    useEffect(() => {
+        if (user) {
+            apiCallUser()
+        }
+    }, [user])
     return (
         <div>
             <BrowserRouter>
