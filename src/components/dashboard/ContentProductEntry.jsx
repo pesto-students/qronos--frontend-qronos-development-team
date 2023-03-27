@@ -2,6 +2,9 @@ import React, { useContext, useEffect, useState } from 'react'
 import Sidebar from './components/Sidebar'
 import axios from 'axios'
 import { DatabaseContext } from '../../context/context'
+
+import { useLocation } from "react-router-dom"
+
 const ContentEntry = () => {
 
     const { database } = useContext(DatabaseContext)
@@ -21,6 +24,18 @@ const ContentEntry = () => {
         const result = axios.post()
 
     }
+
+    const location = useLocation()
+    console.log(location);
+
+    const routeParams = new URLSearchParams(location.search);
+    console.log("routeParams", routeParams.get('entry'));
+
+    useEffect(() => {
+        if (routeParams) {
+
+        }
+    }, [routeParams])
 
     useEffect(() => {
         console.log(database);

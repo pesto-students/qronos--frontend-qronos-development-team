@@ -11,7 +11,8 @@ import Contentview from './components/dashboard/Contentview';
 import LoadImages from './components/dashboard/LoadImages';
 import Userprofile from './components/dashboard/Userprofile';
 import { useAuth0 } from '@auth0/auth0-react';
-import ContentEntry from './components/dashboard/ContentEntry';
+import ContentProductEntry from './components/dashboard/ContentProductEntry';
+import ContentBlogEntry from './components/dashboard/ContentBlogEntry';
 import { useContext, useEffect } from 'react';
 import axios from 'axios';
 import Header from './components/Home/Header';
@@ -65,8 +66,8 @@ function App() {
                     <Route path='/userprofile' element={<Userprofile />} />
                     <Route path='/medialibrary' element={<LoadImages />} />
                     <Route path='/content' element={<Contentview />} />
-                    <Route path='/content/product' element={<ContentEntry />} />
-                    <Route path='/contententry' element={<ContentEntry />} />
+                    <Route path='/content/product' element={<ContentProductEntry />} />
+                    <Route path='/content/blog' element={<ContentBlogEntry />} />
                     <Route path='/404' element={<NotFound404 />} />
                 </Routes>
             </BrowserRouter>
