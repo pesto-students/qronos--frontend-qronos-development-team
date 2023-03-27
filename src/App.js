@@ -12,24 +12,37 @@ import LoadImages from './components/dashboard/LoadImages';
 import Userprofile from './components/dashboard/Userprofile';
 import { useAuth0 } from '@auth0/auth0-react';
 import ContentEntry from './components/dashboard/ContentEntry';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import axios from 'axios';
 import Header from './components/Home/Header';
 import Footer from './components/Home/Footer';
+import { DatabaseContext, UserContext } from './context/context';
 
 
 function App() {
     const { isAuthenticated, user } = useAuth0();
     console.log(user);
 
+    const { setDatabase } = useContext(DatabaseContext)
+    const { setUser } = useContext(UserContext)
     const apiCallUser = async () => {
         console.log(user.email);
-        await axios.get(`http://localhost:8080/get-user`, {
-            params: {
-                emailId: user.email,
-                name: user.name
-            }
-        })
+        try {
+            const result = await axios.get(`http://localhost:8080/get-user`, {
+                params: {
+                    emailId: user.email,
+                    name: user.name
+                }
+            })
+            console.log(result);
+            setUser({
+                email: result.data.email,
+                name: result.data.name
+            })
+            setDatabase(result.data.database[0])
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     useEffect(() => {
@@ -52,6 +65,7 @@ function App() {
                     <Route path='/userprofile' element={<Userprofile />} />
                     <Route path='/medialibrary' element={<LoadImages />} />
                     <Route path='/content' element={<Contentview />} />
+                    <Route path='/content/product' element={<ContentEntry />} />
                     <Route path='/contententry' element={<ContentEntry />} />
                     <Route path='/404' element={<NotFound404 />} />
                 </Routes>

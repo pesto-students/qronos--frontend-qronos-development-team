@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 
 import App from './App';
 import { Auth0Provider } from "@auth0/auth0-react";
+import { DatabaseProvider, UserProvider } from './context/context';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Auth0Provider
@@ -12,7 +13,11 @@ root.render(
       redirect_uri: window.location.origin
     }}
   >
-    <App />
+    <UserProvider>
+      <DatabaseProvider>
+        <App />
+      </DatabaseProvider>
+    </UserProvider>
   </Auth0Provider>,
   document.getElementById("root")
 );

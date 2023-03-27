@@ -1,6 +1,31 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Sidebar from './components/Sidebar'
+import axios from 'axios'
+import { DatabaseContext } from '../../context/context'
 const ContentEntry = () => {
+
+    const { database } = useContext(DatabaseContext)
+
+    const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
+    const [thumbnailTitle, setThumbnailTitle] = useState('')
+    const [seoTitle, setSeoTitle] = useState('')
+    const [seoDescription, setSeoDescription] = useState('')
+    const [price, setPrice] = useState('')
+    const [sku, setSku] = useState('')
+    const [countryCode, setCountryCode] = useState('')
+
+    const publish = e => {
+        e.preventDefault()
+
+        const result = axios.post()
+
+    }
+
+    useEffect(() => {
+        console.log(database);
+    }, [database])
+
     return (
         <body>
 
@@ -29,29 +54,42 @@ const ContentEntry = () => {
                     </section>
 
                     <section class="py-4 overflow-hidden"><div class="container px-4 mx-auto">
-                        <div class="py-6 px-7 bg-white border rounded-xl">
+                        <form class="py-6 px-7 bg-white border rounded-xl" onSubmit={publish}>
                             <div class="flex flex-wrap justify-between -m-2">
 
 
                                 <div class="w-full mx-auto">
                                     <form wtx-context="B2AA524A-3F11-4A0A-BEFF-1067905C74A8">
+                                        <label class="block mb-2 text-xs text-gray-700 uppercase tracking-wide font-bold">Title</label>
+                                        <input class="appearance-none block w-full py-3 px-4 mb-2 md:mb-0 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" type="text" placeholder="Please enter title" wtx-context="EC02D531-93E4-4784-8CF9-FAA1DC462EDC"
+                                            onChange={e => setTitle(e.target.value)}
+                                        />
+                                        <label class="block mb-2 text-xs text-gray-700 uppercase tracking-wide font-bold">Description</label>
+                                        <textarea class="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" placeholder="Write something..." rows="5"
+                                            onChange={e => setDescription(e.target.value)}></textarea>
+                                        <label class="block mb-2 text-xs text-gray-700 uppercase tracking-wide font-bold">Thumbnail Title</label>
+                                        <input class="appearance-none block w-full py-3 px-4 mb-2 md:mb-0 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" type="text" placeholder="Please enter " wtx-context="EC02D531-93E4-4784-8CF9-FAA1DC462EDC"
+                                            onChange={e => setThumbnailTitle(e.target.value)} />
+                                        <label class="block mb-2 text-xs text-gray-700 uppercase tracking-wide font-bold">SEO Title</label>
+                                        <input class="appearance-none block w-full py-3 px-4 mb-2 md:mb-0 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" type="text" placeholder="Please enter " wtx-context="EC02D531-93E4-4784-8CF9-FAA1DC462EDC"
+                                            onChange={e => setSeoTitle(e.target.value)} />
+                                        <label class="block mb-2 text-xs text-gray-700 uppercase tracking-wide font-bold">SEO Description</label>
+                                        <textarea class="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" placeholder="Write something..." rows="5"
+                                            onChange={e => setSeoDescription(e.target.value)}></textarea>
+                                        <label class="block mb-2 text-xs text-gray-700 uppercase tracking-wide font-bold">Price</label>
+                                        <input class="appearance-none block w-full py-3 px-4 mb-2 md:mb-0 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" type="text" placeholder="Please enter " wtx-context="EC02D531-93E4-4784-8CF9-FAA1DC462EDC" onChange={e => setPrice(e.target.value)} />
+                                        <label class="block mb-2 text-xs text-gray-700 uppercase tracking-wide font-bold">SKU</label>
+                                        <input class="appearance-none block w-full py-3 px-4 mb-2 md:mb-0 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" type="text" placeholder="Please enter " wtx-context="EC02D531-93E4-4784-8CF9-FAA1DC462EDC" onChange={e => setSku(e.target.value)} />
+                                        <label class="block mb-2 text-xs text-gray-700 uppercase tracking-wide font-bold">Price Country Code</label>
+                                        <input class="appearance-none block w-full py-3 px-4 mb-2 md:mb-0 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" type="text" placeholder="Please enter " wtx-context="EC02D531-93E4-4784-8CF9-FAA1DC462EDC" onChange={e => setCountryCode(e.target.value)} />
                                         <div class="mb-4">
-                                            <input class="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" type="text" placeholder="Email" wtx-context="52004ED7-20BD-498D-BBEB-69EA2861AA46" /></div>
-                                        <div class="mb-4">
-                                            <input class="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" type="password" placeholder="Password" wtx-context="913BE545-016D-4F6D-8141-647B5DC92F84" /></div>
-                                        <label class="block mb-2 text-xs text-gray-700 uppercase tracking-wide font-bold">Text input</label>
-                                        <input class="appearance-none block w-full py-3 px-4 mb-2 md:mb-0 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" type="text" placeholder="Enter text" wtx-context="EC02D531-93E4-4784-8CF9-FAA1DC462EDC" />
-                                        <label class="block mb-2 text-xs text-gray-700 uppercase tracking-wide font-bold">Example textarea</label>
-                                        <textarea class="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" placeholder="Write something..." rows="5"></textarea>
-                                        <input class="appearance-none block w-full py-3 px-4 mb-2 md:mb-0 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" type="file" placeholder="Upload File" wtx-context="E70964FE-6D19-45CC-9BC2-2C6FE4EEA083" />
-                                        <div class="mb-4">
-                                            <button class="inline-block w-full py-4 px-8 leading-none text-white bg-indigo-500 hover:bg-indigo-600 rounded shadow">Submit</button>
+                                            <button type='submit' class="inline-block w-full py-4 px-8 leading-none text-white bg-indigo-500 hover:bg-indigo-600 rounded shadow">Publish</button>
                                         </div>
                                     </form>
                                 </div>
 
                             </div>
-                        </div>
+                        </form>
                     </div>
                     </section>
 
