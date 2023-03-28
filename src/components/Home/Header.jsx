@@ -3,11 +3,18 @@ import { Link } from 'react-router-dom'
 import './index.css';
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from 'react';
+import { LocalStorage, LocalStorageKeys } from '../../utils/LocalStorage';
 const Header = () => {
     const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
 
     const [open, setopen] = useState(false);
 
+    const logoutFun = () => {
+        logout({ logoutParams: { returnTo: window.location.origin } })
+            .then(() => {
+                LocalStorage.clear()
+            })
+    }
 
     return (
         <header>
@@ -110,11 +117,9 @@ const Header = () => {
                         <Link to="/about"><li><p class="text-sm text-black hover:text-gray-700" >About</p></li></Link>
                     </ul>
                     {
-                        isAuthenticated ?
-                            (<button class="hidden bg-black text-white font-bold text-sm lg:block px-6 py-3" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>Logout</button>) :
+                        (isAuthenticated || LocalStorage.get(LocalStorageKeys.USER_DETAILS)) ?
+                            (<button class="hidden bg-black text-white font-bold text-sm lg:block px-6 py-3" onClick={() => logoutFun()}>Logout</button>) :
                             (<button class="hidden bg-black text-white font-bold text-sm lg:block px-6 py-3" onClick={() => loginWithRedirect()}>Login</button>)
-
-
                     }
                     <button class="hidden lg:block px-6 py-3 text-sm text-white hover:text-gray-700 font-bold border border-gray-100 rounded bg-black" contenteditable="false">Sign up</button>
                 </div>

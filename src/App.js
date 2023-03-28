@@ -18,11 +18,12 @@ import axios from 'axios';
 import Header from './components/Home/Header';
 import Footer from './components/Home/Footer';
 import { DatabaseContext, UserContext } from './context/context';
+import { LocalStorage, LocalStorageKeys } from './utils/LocalStorage';
 
 
 function App() {
-    const { isAuthenticated, user } = useAuth0();
-    console.log(user);
+    const { isAuthenticated, user, logout } = useAuth0();
+    // console.log(user);
 
     const { setDatabase } = useContext(DatabaseContext)
     const { setUser } = useContext(UserContext)
@@ -40,11 +41,26 @@ function App() {
                 email: result.data.email,
                 name: result.data.name
             })
+            LocalStorage.set(LocalStorageKeys.USER_DETAILS, JSON.stringify({
+                email: result.data.email,
+                name: result.data.name
+            }))
             setDatabase(result.data.database[0])
+            LocalStorage.set(LocalStorageKeys.DATABASE_BASE_DETAILS, JSON.stringify(result.data.database[0]))
         } catch (error) {
             console.error(error);
         }
     }
+
+    useEffect(() => {
+        console.log("helo");
+        if (!LocalStorage.get(LocalStorageKeys.USER_DETAILS)) {
+            logout({ logoutParams: { returnTo: window.location.origin } })
+                .then(() => {
+                    LocalStorage.clear()
+                })
+        }
+    }, [LocalStorage.get(LocalStorageKeys.USER_DETAILS)])
 
     useEffect(() => {
         if (user) {

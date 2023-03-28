@@ -29,7 +29,7 @@ const ContentEntry = () => {
 
     useEffect(() => {
         if (routeParams) {
-
+            
         }
     }, [routeParams])
 
