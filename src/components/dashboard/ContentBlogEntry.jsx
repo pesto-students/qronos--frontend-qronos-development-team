@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Sidebar from './components/Sidebar'
 import axios from 'axios'
-import { DatabaseContext } from '../../context/context'
+import { DatabaseContext, UserContext } from '../../context/context'
 import { Link, useParams, useLocation } from "react-router-dom"
 
 const ContentEntry = () => {
 
     const { database } = useContext(DatabaseContext)
-
+    const { user } = useContext(UserContext)
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [thumbnailTitle, setThumbnailTitle] = useState('')
@@ -22,14 +22,34 @@ const ContentEntry = () => {
     }
 
     const location = useLocation()
-    console.log(location);
+    console.log(database);
 
-    const routeParams = new URLSearchParams(location.search);
-    console.log("routeParams", routeParams.get('entry'));
+    const routeParams = new URLSearchParams(location.search).get('entry');
+    // console.log("routeParams", routeParams.get('entry'));
+
+    const getValues = async () => {
+        try {
+            console.log(routeParams, database._id);
+            const result = await axios.get(`http://localhost:8080/blog/${routeParams}`, {
+                params: {
+                    email: user.email,
+                    databaseId: database._id
+                }
+            })
+            const data = result.data
+            setTitle(data.title)
+            setDescription(data.description)
+            setThumbnailTitle(data.thumbnailTitle)
+            setSeoTitle(data.seoTitle)
+            setSeoDescription(data.seoDescription)
+        } catch (error) {
+
+        }
+    }
 
     useEffect(() => {
         if (routeParams) {
-            
+            getValues()
         }
     }, [routeParams])
 

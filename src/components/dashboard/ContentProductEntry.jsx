@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Sidebar from './components/Sidebar'
 import axios from 'axios'
-import { DatabaseContext } from '../../context/context'
+import { DatabaseContext, UserContext } from '../../context/context'
 
 import { useLocation } from "react-router-dom"
 
 const ContentEntry = () => {
 
     const { database } = useContext(DatabaseContext)
+    const { user } = useContext(UserContext)
 
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
@@ -28,12 +29,34 @@ const ContentEntry = () => {
     const location = useLocation()
     console.log(location);
 
-    const routeParams = new URLSearchParams(location.search);
-    console.log("routeParams", routeParams.get('entry'));
+    const routeParams = new URLSearchParams(location.search).get('entry');
+    console.log("routeParams", routeParams);
+
+    const getValues = async () => {
+        try {
+            const result = await axios.get(`http://localhost:8080/product/${routeParams}`, {
+                params: {
+                    email: user.email,
+                    databaseId: database._id
+                }
+            })
+            const data = result.data
+            setTitle(data.title)
+            setDescription(data.description)
+            setThumbnailTitle(data.thumbnailTitle)
+            setSeoTitle(data.seoTitle)
+            setSeoDescription(data.seoDescription)
+            setPrice(data.price)
+            setSku(data.sku)
+            setCountryCode(data.countryCode)
+        } catch (error) {
+            
+        }
+    }
 
     useEffect(() => {
         if (routeParams) {
-
+            getValues()
         }
     }, [routeParams])
 
@@ -77,26 +100,37 @@ const ContentEntry = () => {
                                     <form wtx-context="B2AA524A-3F11-4A0A-BEFF-1067905C74A8">
                                         <label class="block mb-2 text-xs text-gray-700 uppercase tracking-wide font-bold">Title</label>
                                         <input class="appearance-none block w-full py-3 px-4 mb-2 md:mb-0 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" type="text" placeholder="Please enter title" wtx-context="EC02D531-93E4-4784-8CF9-FAA1DC462EDC"
+                                            value={title}
                                             onChange={e => setTitle(e.target.value)}
                                         />
                                         <label class="block mb-2 text-xs text-gray-700 uppercase tracking-wide font-bold">Description</label>
                                         <textarea class="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" placeholder="Write something..." rows="5"
+                                            value={description}
                                             onChange={e => setDescription(e.target.value)}></textarea>
                                         <label class="block mb-2 text-xs text-gray-700 uppercase tracking-wide font-bold">Thumbnail Title</label>
                                         <input class="appearance-none block w-full py-3 px-4 mb-2 md:mb-0 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" type="text" placeholder="Please enter " wtx-context="EC02D531-93E4-4784-8CF9-FAA1DC462EDC"
+                                            value={thumbnailTitle}
                                             onChange={e => setThumbnailTitle(e.target.value)} />
                                         <label class="block mb-2 text-xs text-gray-700 uppercase tracking-wide font-bold">SEO Title</label>
                                         <input class="appearance-none block w-full py-3 px-4 mb-2 md:mb-0 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" type="text" placeholder="Please enter " wtx-context="EC02D531-93E4-4784-8CF9-FAA1DC462EDC"
+                                            value={seoTitle}
                                             onChange={e => setSeoTitle(e.target.value)} />
                                         <label class="block mb-2 text-xs text-gray-700 uppercase tracking-wide font-bold">SEO Description</label>
                                         <textarea class="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" placeholder="Write something..." rows="5"
+                                            value={seoDescription}
                                             onChange={e => setSeoDescription(e.target.value)}></textarea>
                                         <label class="block mb-2 text-xs text-gray-700 uppercase tracking-wide font-bold">Price</label>
-                                        <input class="appearance-none block w-full py-3 px-4 mb-2 md:mb-0 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" type="text" placeholder="Please enter " wtx-context="EC02D531-93E4-4784-8CF9-FAA1DC462EDC" onChange={e => setPrice(e.target.value)} />
+                                        <input class="appearance-none block w-full py-3 px-4 mb-2 md:mb-0 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" type="text" placeholder="Please enter " wtx-context="EC02D531-93E4-4784-8CF9-FAA1DC462EDC"
+                                            value={price}
+                                            onChange={e => setPrice(e.target.value)} />
                                         <label class="block mb-2 text-xs text-gray-700 uppercase tracking-wide font-bold">SKU</label>
-                                        <input class="appearance-none block w-full py-3 px-4 mb-2 md:mb-0 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" type="text" placeholder="Please enter " wtx-context="EC02D531-93E4-4784-8CF9-FAA1DC462EDC" onChange={e => setSku(e.target.value)} />
+                                        <input class="appearance-none block w-full py-3 px-4 mb-2 md:mb-0 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" type="text" placeholder="Please enter " wtx-context="EC02D531-93E4-4784-8CF9-FAA1DC462EDC"
+                                            value={sku}
+                                            onChange={e => setSku(e.target.value)} />
                                         <label class="block mb-2 text-xs text-gray-700 uppercase tracking-wide font-bold">Price Country Code</label>
-                                        <input class="appearance-none block w-full py-3 px-4 mb-2 md:mb-0 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" type="text" placeholder="Please enter " wtx-context="EC02D531-93E4-4784-8CF9-FAA1DC462EDC" onChange={e => setCountryCode(e.target.value)} />
+                                        <input class="appearance-none block w-full py-3 px-4 mb-2 md:mb-0 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" type="text" placeholder="Please enter " wtx-context="EC02D531-93E4-4784-8CF9-FAA1DC462EDC"
+                                            value={countryCode}
+                                            onChange={e => setCountryCode(e.target.value)} />
                                         <div class="mb-4">
                                             <button type='submit' class="inline-block w-full py-4 px-8 leading-none text-white bg-indigo-500 hover:bg-indigo-600 rounded shadow">Publish</button>
                                         </div>
