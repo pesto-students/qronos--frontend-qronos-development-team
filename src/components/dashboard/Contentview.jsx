@@ -39,6 +39,14 @@ const Contentview = () => {
     getEntries()
   }
 
+  const shortenContent = (string, length) => {
+    if (string.length < length) {
+      return string
+    } else {
+      return `${string.substr(0, length)}...`
+    }
+  }
+
   return (
 
     <div class="relative">
@@ -78,7 +86,7 @@ const Contentview = () => {
                   <table class="w-full min-w-max">
                     <thead><tr class="text-left">
                       <th class="p-0 border-b border-neutral-100">
-                        <div class="pb-3.5"><a class="text-sm text-gray-400 font-medium uppercase" href="#">ID</a></div>
+                        <div class="pb-3.5"><a class="text-sm text-gray-400 font-medium uppercase" href="#">Select</a></div>
                       </th>
                       <th class="p-0 border-b border-neutral-100">
                         <div class="pb-3.5"><a class="text-sm text-gray-400 font-medium" href="#">Name</a></div>
@@ -107,8 +115,8 @@ const Contentview = () => {
                             return (
                               <tr key={index}>
                                 <td class="py-3 pr-4 border-b border-neutral-100"><input type="checkbox" /></td>
-                                <td class="py-3 pr-4 border-b border-neutral-100"><span class="text-sm">{entry.title.substr(0, 10)}</span></td>
-                                <td class="py-3 pr-4 border-b border-neutral-100" >{entry.description.substr(1, 40)}</td>
+                                <td class="py-3 pr-4 border-b border-neutral-100"><span class="text-sm">{shortenContent(entry.title, 10)}</span></td>
+                                <td class="py-3 pr-4 border-b border-neutral-100" >{shortenContent(entry.description, 40)}</td>
                                 <td class="py-3 pr-4 border-b border-neutral-100"><span class="text-sm">{entry.type}</span></td>
                                 <td class="py-3 border-b border-neutral-100">
                                   <Link to={`/content/${entry.type.replace('Type', '')}?entry=${entry._id}`}>

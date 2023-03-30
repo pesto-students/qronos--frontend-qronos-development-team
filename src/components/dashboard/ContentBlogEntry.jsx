@@ -2,9 +2,11 @@ import React, { useContext, useEffect, useState } from 'react'
 import Sidebar from './components/Sidebar'
 import axios from 'axios'
 import { DatabaseContext, UserContext } from '../../context/context'
-import { Link, useParams, useLocation } from "react-router-dom"
+import { Link, useParams, useLocation, useNavigate } from "react-router-dom"
 
 const ContentEntry = () => {
+
+    let navigate = useNavigate();
 
     const { database } = useContext(DatabaseContext)
     const { user } = useContext(UserContext)
@@ -14,18 +16,19 @@ const ContentEntry = () => {
     const [seoTitle, setSeoTitle] = useState('')
     const [seoDescription, setSeoDescription] = useState('')
 
-    const publish = e => {
-        e.preventDefault()
-
-        const result = axios.post()
-
-    }
-
     const location = useLocation()
     console.log(database);
 
     const routeParams = new URLSearchParams(location.search).get('entry');
     // console.log("routeParams", routeParams.get('entry'));
+
+    const updateValues = (data) => {
+        setTitle(data.title)
+        setDescription(data.description)
+        setThumbnailTitle(data.thumbnailTitle)
+        setSeoTitle(data.seoTitle)
+        setSeoDescription(data.seoDescription)
+    }
 
     const getValues = async () => {
         try {
@@ -37,11 +40,7 @@ const ContentEntry = () => {
                 }
             })
             const data = result.data
-            setTitle(data.title)
-            setDescription(data.description)
-            setThumbnailTitle(data.thumbnailTitle)
-            setSeoTitle(data.seoTitle)
-            setSeoDescription(data.seoDescription)
+            updateValues(data)
         } catch (error) {
 
         }
@@ -56,6 +55,52 @@ const ContentEntry = () => {
     useEffect(() => {
         console.log(database);
     }, [database])
+
+    // const redirectToContentView = () => {
+    //     useNavigate('/content')
+    // }
+
+    const publishData = async () => {
+        const databaseId = database._id
+        if (routeParams) {
+            if (!title) return
+            const url = `http://localhost:8080/blog/${databaseId}/${routeParams}`
+            await axios.patch(url, {
+                blog: {
+                    title,
+                    description,
+                    thumbnailTitle,
+                    seoTitle,
+                    seoDescription
+                },
+                emailId: user.email
+            })
+                .then(function (response) {
+                    // redirectToContentView()
+                    navigate('/content')
+                    console.log(JSON.stringify(response.data));
+                })
+        } else {
+            if (!title) return
+            const url = `http://localhost:8080/blog/${databaseId}`
+            console.log(url);
+            await axios.post(url, {
+                blog: {
+                    title,
+                    description,
+                    thumbnailTitle,
+                    seoTitle,
+                    seoDescription
+                },
+                emailId: user.email
+            })
+                .then(function (response) {
+                    // redirectToContentView()
+                    navigate('/content')
+                    console.log(JSON.stringify(response.data));
+                })
+        }
+    }
 
     return (
         <body>
@@ -85,12 +130,12 @@ const ContentEntry = () => {
                     </section>
 
                     <section class="py-4 overflow-hidden"><div class="container px-4 mx-auto">
-                        <form class="py-6 px-7 bg-white border rounded-xl" onSubmit={publish}>
+                        <div class="py-6 px-7 bg-white border rounded-xl">
                             <div class="flex flex-wrap justify-between -m-2">
 
 
                                 <div class="w-full mx-auto">
-                                    <form wtx-context="B2AA524A-3F11-4A0A-BEFF-1067905C74A8">
+                                    <div wtx-context="B2AA524A-3F11-4A0A-BEFF-1067905C74A8">
                                         <label class="block mb-2 text-xs text-gray-700 uppercase tracking-wide font-bold">Title</label>
                                         <input class="appearance-none block w-full py-3 px-4 mb-2 md:mb-0 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" type="text" placeholder="Please enter title" wtx-context="EC02D531-93E4-4784-8CF9-FAA1DC462EDC"
                                             onChange={e => setTitle(e.target.value)}
@@ -117,13 +162,13 @@ const ContentEntry = () => {
                                             value={seoDescription}
                                         ></textarea>
                                         <div class="mb-4">
-                                            <button type='submit' class="inline-block w-full py-4 px-8 leading-none text-white bg-indigo-500 hover:bg-indigo-600 rounded shadow">Publish</button>
+                                            <button type='submit' class="inline-block w-full py-4 px-8 leading-none text-white bg-indigo-500 hover:bg-indigo-600 rounded shadow" onClick={e => publishData()}>Publish</button>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
 
                             </div>
-                        </form>
+                        </div>
                     </div>
                     </section>
 

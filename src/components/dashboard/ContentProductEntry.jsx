@@ -3,9 +3,11 @@ import Sidebar from './components/Sidebar'
 import axios from 'axios'
 import { DatabaseContext, UserContext } from '../../context/context'
 
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 
 const ContentEntry = () => {
+
+    let navigate = useNavigate();
 
     const { database } = useContext(DatabaseContext)
     const { user } = useContext(UserContext)
@@ -19,11 +21,51 @@ const ContentEntry = () => {
     const [sku, setSku] = useState('')
     const [countryCode, setCountryCode] = useState('')
 
-    const publish = e => {
-        e.preventDefault()
-
-        const result = axios.post()
-
+    const publishData = async () => {
+        const databaseId = database._id
+        if (routeParams) {
+            if (!title) return
+            const url = `http://localhost:8080/product/${databaseId}/${routeParams}`
+            await axios.patch(url, {
+                product: {
+                    title,
+                    description,
+                    thumbnailTitle,
+                    seoTitle,
+                    seoDescription,
+                    price,
+                    sku,
+                    countryCode
+                },
+                emailId: user.email
+            })
+                .then(function (response) {
+                    // redirectToContentView()
+                    navigate('/content')
+                    console.log(JSON.stringify(response.data));
+                })
+        } else {
+            if (!title) return
+            const url = `http://localhost:8080/product/${databaseId}`
+            await axios.post(url, {
+                product: {
+                    title,
+                    description,
+                    thumbnailTitle,
+                    seoTitle,
+                    seoDescription,
+                    price,
+                    sku,
+                    countryCode
+                },
+                emailId: user.email
+            })
+                .then(function (response) {
+                    // redirectToContentView()
+                    navigate('/content')
+                    console.log(JSON.stringify(response.data));
+                })
+        }
     }
 
     const location = useLocation()
@@ -50,7 +92,7 @@ const ContentEntry = () => {
             setSku(data.sku)
             setCountryCode(data.countryCode)
         } catch (error) {
-            
+
         }
     }
 
@@ -92,7 +134,7 @@ const ContentEntry = () => {
                     </section>
 
                     <section class="py-4 overflow-hidden"><div class="container px-4 mx-auto">
-                        <form class="py-6 px-7 bg-white border rounded-xl" onSubmit={publish}>
+                        <form class="py-6 px-7 bg-white border rounded-xl" >
                             <div class="flex flex-wrap justify-between -m-2">
 
 
@@ -132,7 +174,7 @@ const ContentEntry = () => {
                                             value={countryCode}
                                             onChange={e => setCountryCode(e.target.value)} />
                                         <div class="mb-4">
-                                            <button type='submit' class="inline-block w-full py-4 px-8 leading-none text-white bg-indigo-500 hover:bg-indigo-600 rounded shadow">Publish</button>
+                                            <button type='button' class="inline-block w-full py-4 px-8 leading-none text-white bg-indigo-500 hover:bg-indigo-600 rounded shadow" onClick={() => publishData()}>Publish</button>
                                         </div>
                                     </form>
                                 </div>
