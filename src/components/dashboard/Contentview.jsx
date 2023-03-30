@@ -2,16 +2,51 @@ import React, { useContext, useEffect, useState } from 'react'
 import Sidebar from './components/Sidebar'
 import { DatabaseContext, UserContext } from '../../context/context'
 import axios from 'axios'
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 // import { useParams } from "react-router-dom";
 const Contentview = () => {
 
   const { database } = useContext(DatabaseContext)
   const { user } = useContext(UserContext)
   const [entries, setEntries] = useState([])
+  const [deletedEntriesProduct, setDeletedEntriesProduct] = useState([])
+  const [deletedEntriesBlog, setDeletedEntriesBlog] = useState([])
+  const [counter, setCounter] = useState(0)
+  const selectedEntries = (entryId, value, type) => {
+    if (type === 'productType') {
+      if (value) {
+        setDeletedEntriesProduct([...deletedEntriesProduct, entryId])
+      } else {
+        const newArray = deletedEntriesProduct.filter((id) => id !== entryId)
+        setDeletedEntriesProduct(newArray)
+      }
+    } else if (type === 'blogType') {
+
+      if (value) {
+        setDeletedEntriesBlog([...deletedEntriesBlog, entryId])
+      } else {
+        const newArray = deletedEntriesBlog.filter((id) => id !== entryId)
+        setDeletedEntriesBlog(newArray)
+      }
+    }
+  }
+
+  console.log(deletedEntriesBlog, deletedEntriesProduct);
+
+  const deleteEntries = async () => {
+    await axios.delete(`http://localhost:8080/database/${database._id}`, {
+      data: {
+        productIds: deletedEntriesProduct,
+        blogIds: deletedEntriesBlog,
+        email: user.email,
+      }
+    })
+      .then(() => {
+        setCounter(counter + 1)
+      })
+  }
 
   const getEntries = async () => {
-    console.log("database", user);
     const data = await axios.get(`http://localhost:8080/database/${database._id}`, {
       params: {
         emailId: user.email
@@ -23,7 +58,9 @@ const Contentview = () => {
 
   useEffect(() => {
     getEntries()
-  }, [database])
+  }, [database, counter])
+
+  const navigate = useNavigate()
 
   const deleteEntry = async (entry) => {
     console.log(entry);
@@ -58,17 +95,28 @@ const Contentview = () => {
         <section class="py-4 overflow-hidden">
           <div class="container px-4 mx-auto">
             <div class="px-8 py-6 bg-white overflow-hidden border rounded-xl">
-              <a class="flex flex-wrap items-center mb-2 text-neutral-500 hover:text-neutral-600" href="#">
-                <svg class="mr-3.5" width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.13634 11.197C5.42923 11.4899 5.9041 11.4899 6.197 11.197C6.48989 10.9041 6.48989 10.4292 6.197 10.1363L5.13634 11.197ZM1 6.00001L0.46967 5.46968C0.329018 5.61033 0.25 5.8011 0.25 6.00001C0.25 6.19892 0.329018 6.38969 0.46967 6.53034L1 6.00001ZM6.197 1.86367C6.48989 1.57078 6.48989 1.09591 6.197 0.803013C5.9041 0.51012 5.42923 0.51012 5.13634 0.803013L6.197 1.86367ZM13 6.75001C13.4142 6.75001 13.75 6.41422 13.75 6.00001C13.75 5.5858 13.4142 5.25001 13 5.25001V6.75001ZM6.197 10.1363L1.53033 5.46968L0.46967 6.53034L5.13634 11.197L6.197 10.1363ZM1.53033 6.53034L6.197 1.86367L5.13634 0.803013L0.46967 5.46968L1.53033 6.53034ZM1 6.75001L13 6.75001V5.25001L1 5.25001L1 6.75001Z" fill="currentColor"></path></svg><span>Back to Home</span></a>
+              <a class="flex flex-wrap items-center mb-2 text-neutral-500 hover:text-neutral-600" onClick={() => navigate('/')}>
+                <svg class="mr-3.5" width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.13634 11.197C5.42923 11.4899 5.9041 11.4899 6.197 11.197C6.48989 10.9041 6.48989 10.4292 6.197 10.1363L5.13634 11.197ZM1 6.00001L0.46967 5.46968C0.329018 5.61033 0.25 5.8011 0.25 6.00001C0.25 6.19892 0.329018 6.38969 0.46967 6.53034L1 6.00001ZM6.197 1.86367C6.48989 1.57078 6.48989 1.09591 6.197 0.803013C5.9041 0.51012 5.42923 0.51012 5.13634 0.803013L6.197 1.86367ZM13 6.75001C13.4142 6.75001 13.75 6.41422 13.75 6.00001C13.75 5.5858 13.4142 5.25001 13 5.25001V6.75001ZM6.197 10.1363L1.53033 5.46968L0.46967 6.53034L5.13634 11.197L6.197 10.1363ZM1.53033 6.53034L6.197 1.86367L5.13634 0.803013L0.46967 5.46968L1.53033 6.53034ZM1 6.75001L13 6.75001V5.25001L1 5.25001L1 6.75001Z" fill="currentColor"></path></svg><span>Back to Home</span>
+              </a>
               <div class="flex flex-wrap items-center -m-2">
                 <div class="w-full md:w-1/2 p-2">
                   <h3 class="font-heading mb-1.5 font-semibold text-4xl">Content  View</h3>
-
                 </div>
                 <div class="w-full md:w-1/2 p-2">
                   <div class="flex flex-wrap md:justify-end">
-                    <div class="w-auto">
-                      <button class="inline-flex flex-wrap items-center justify-center px-5 py-2.5 w-full font-medium text-sm text-center bg-black text-white rounded-xl" href="#">+ Add Entry</button>
+                    {
+                      (deletedEntriesProduct.length > 0 || deletedEntriesBlog.length > 0)
+                      && <button class="w-auto p-2" onClick={() => deleteEntries()}>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                        </svg>
+                      </button>
+                    }
+                    <div class="w-auto p-2">
+                      <button class="inline-flex flex-wrap items-center justify-center px-5 py-2.5 w-full font-medium text-sm text-center bg-black text-white rounded-xl" onClick={() => navigate('/content/product/')}>+ Add Product Entry</button>
+                    </div>
+                    <div class="w-auto p-2">
+                      <button class="inline-flex flex-wrap items-center justify-center px-5 py-2.5 w-full font-medium text-sm text-center bg-black text-white rounded-xl" onClick={() => navigate('/content/blog/')}>+ Add Blog Entry</button>
                     </div>
                     <div class="w-auto"></div>
                   </div>
@@ -111,10 +159,10 @@ const Contentview = () => {
                       {
                         entries.length > 0 ?
                           entries.map((entry, index) => {
-                            console.log(entry);
+                            // console.log(entry);
                             return (
                               <tr key={index}>
-                                <td class="py-3 pr-4 border-b border-neutral-100"><input type="checkbox" /></td>
+                                <td class="py-3 pr-4 border-b border-neutral-100"><input type="checkbox" checked={deletedEntriesProduct.includes(entry._id) || deletedEntriesBlog.includes(entry._id)} onChange={e => selectedEntries(entry._id, e.target.checked, entry.type)} /></td>
                                 <td class="py-3 pr-4 border-b border-neutral-100"><span class="text-sm">{shortenContent(entry.title, 10)}</span></td>
                                 <td class="py-3 pr-4 border-b border-neutral-100" >{shortenContent(entry.description, 40)}</td>
                                 <td class="py-3 pr-4 border-b border-neutral-100"><span class="text-sm">{entry.type}</span></td>
@@ -126,15 +174,27 @@ const Contentview = () => {
                                   </Link>
                                 </td>
                                 <td class="py-3 pr-4 border-b border-neutral-100" onClick={e => deleteEntry(entry)} >
-                                  <button> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                                  </svg>
+                                  <button>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                    </svg>
                                   </button>
                                 </td>
                               </tr>
                             )
                           })
-                          : null
+                          : <div class="w-full p-2">
+                            <div class="flex flex-wrap md:justify-evenly">
+                              <div class="w-auto p-2">
+                                <button class="inline-flex flex-wrap items-center justify-center px-5 py-2.5 w-full font-medium text-sm text-center bg-black text-white rounded-xl" onClick={() => navigate('/content/product/')}>+ Add Product Entry</button>
+                              </div>
+                              <div class="w-auto p-2">
+                                <button class="inline-flex flex-wrap items-center justify-center px-5 py-2.5 w-full font-medium text-sm text-center bg-black text-white rounded-xl" onClick={() => navigate('/content/blog/')}>+ Add Blog Entry</button>
+                              </div>
+                              <div class="w-auto"></div>
+                            </div>
+                          </div>
+
                       }
 
 
