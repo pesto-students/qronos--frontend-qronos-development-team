@@ -17,6 +17,7 @@ const get = (key) => {
     const isBrowser = typeof window !== 'undefined'
     if (isBrowser) {
         const item = window.localStorage.getItem(key)
+        if (!item || item==="undefined") return null
         return JSON.parse(item)
     } else {
         return null

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 
 import Dashboard from './components/dashboard/Dashboard';
 import Home from './components/Home/Home';
@@ -17,16 +17,22 @@ import { useContext, useEffect } from 'react';
 import axios from 'axios';
 import Header from './components/Home/Header';
 import Footer from './components/Home/Footer';
-import { DatabaseContext, UserContext } from './context/context';
+import { CounterContext, DatabaseContext, UserContext } from './context/context';
 import { LocalStorage, LocalStorageKeys } from './utils/LocalStorage';
 
 
 function App() {
     const { isAuthenticated, user, logout } = useAuth0();
     // console.log(user);
-
-    const { setDatabase } = useContext(DatabaseContext)
+    // const navigate = useNavigate()
+    const {
+        setDatabase,
+        allDatabases,
+        setAllDatabases
+    } = useContext(DatabaseContext)
     const { setUser } = useContext(UserContext)
+    const { counter, setCounter } = useContext(CounterContext)
+
     const apiCallUser = async () => {
         console.log(user.email);
         try {
@@ -36,7 +42,7 @@ function App() {
                     name: user.name
                 }
             })
-            console.log(result);
+            console.log("result", result);
             setUser({
                 email: result.data.email,
                 name: result.data.name
@@ -45,28 +51,35 @@ function App() {
                 email: result.data.email,
                 name: result.data.name
             }))
-            setDatabase(result.data.database[0])
-            LocalStorage.set(LocalStorageKeys.DATABASE_BASE_DETAILS, JSON.stringify(result.data.database[0]))
+            if (result.data.database.length > 0) {
+                setDatabase(result.data.database[0])
+                setAllDatabases(result.data.database)
+                LocalStorage.set(LocalStorageKeys.DATABASE_BASE_DETAILS, JSON.stringify(result.data.database[0]))
+            } else {
+                if (window.location.pathname !== '/dashboard')
+                    window.location.replace('/dashboard')
+            }
         } catch (error) {
             console.error(error);
         }
     }
 
-    useEffect(() => {
-        console.log("helo");
-        if (!LocalStorage.get(LocalStorageKeys.USER_DETAILS)) {
-            logout({ logoutParams: { returnTo: window.location.origin } })
-                .then(() => {
-                    LocalStorage.clear()
-                })
-        }
-    }, [LocalStorage.get(LocalStorageKeys.USER_DETAILS)])
+    // useEffect(() => {
+    //     console.log("helo");
+    //     if (!LocalStorage.get(LocalStorageKeys.USER_DETAILS) && isAuthenticated) {
+    //         logout({ logoutParams: { returnTo: window.location.origin } })
+    //             .then(() => {
+    //                 LocalStorage.clear()
+    //             })
+    //     }
+    // }, [LocalStorage.get(LocalStorageKeys.USER_DETAILS)])
 
     useEffect(() => {
         if (user) {
             apiCallUser()
         }
-    }, [user])
+    }, [user, counter])
+
     return (
         <div>
             <BrowserRouter>

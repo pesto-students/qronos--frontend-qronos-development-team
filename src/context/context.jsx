@@ -6,10 +6,15 @@ export const DatabaseContext = createContext({})
 export const DatabaseProvider = ({
     children
 }) => {
-    const [database, setDatabase] = useState(LocalStorage.get(LocalStorageKeys.DATABASE_BASE_DETAILS) || null)
-
+    const [database, setDatabase] = useState(localStorage ? LocalStorage?.get(LocalStorageKeys?.DATABASE_BASE_DETAILS) : null)
+    const [allDatabases, setAllDatabases] = useState()
     return (
-        <DatabaseContext.Provider value={{ database, setDatabase }}>
+        <DatabaseContext.Provider value={{
+            database,
+            setDatabase,
+            allDatabases,
+            setAllDatabases
+        }}>
             {children}
         </DatabaseContext.Provider>
     )
@@ -26,5 +31,19 @@ export const UserProvider = ({
         <UserContext.Provider value={{ user, setUser }}>
             {children}
         </UserContext.Provider>
+    )
+}
+
+export const CounterContext = createContext({})
+
+export const CounterProvider = ({
+    children
+}) => {
+    const [counter, setCounter] = useState(0)
+
+    return (
+        <CounterContext.Provider value={{ counter, setCounter }}>
+            {children}
+        </CounterContext.Provider>
     )
 }

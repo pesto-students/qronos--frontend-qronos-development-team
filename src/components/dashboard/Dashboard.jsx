@@ -1,10 +1,37 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './dashboard.css'
 import { useState } from 'react'
 import Sidebar from './components/Sidebar'
+import axios from 'axios'
+import { CounterContext, DatabaseContext, UserContext } from '../../context/context'
+import { useNavigate } from 'react-router-dom'
 const Dashboard = () => {
 
   const [open, setopen] = useState(true)
+  const [databaseName, setDatabaseName] = useState('')
+  const [created, setCreated] = useState(false)
+  const navigate = useNavigate()
+  const { user } = useContext(UserContext)
+  const {
+    setAllDatabases
+  } = useContext(DatabaseContext)
+
+  const { counter, setCounter } = useContext(CounterContext)
+
+  const createDatabase = async () => {
+    if (!databaseName) return
+    console.log(databaseName);
+    await axios.post(`http://localhost:8080/database/${databaseName}`, {
+      emailId: user.email
+    })
+      .then((res) => {
+        console.log(res);
+        setAllDatabases(res)
+        setCounter(counter + 1)
+        setCreated(true)
+        navigate('/content')
+      })
+  }
 
   return (
 
@@ -67,7 +94,7 @@ const Dashboard = () => {
                 <div class="max-w-md mx-auto text-center">
                   <h2 class="font-heading mb-3 text-2xl font-semibold">It’s a bit empty here</h2>
 
-                  <button class="bg-gradient-to-r from-purple-500 to-purple-700 inline-block text-white font-bold py-3 px-3 rounded">Click Me</button>
+                  {/* <button class="bg-gradient-to-r from-purple-500 to-purple-700 inline-block text-white font-bold py-3 px-3 rounded">Click Me</button> */}
 
 
                 </div>
@@ -201,10 +228,16 @@ const Dashboard = () => {
                       <h3 class="font-heading mb-0.5 text-lg font-semibold">To start, create your first project</h3>
                       <p class="mb-7 text-neutral-500">Projects help you organize your events</p>
                       <div class="flex flex-wrap max-w-sm pb-11 -m-1">
-                        <div class="w-full sm:flex-1 p-1">
-                          <input class="px-4 py-3.5 w-full text-sm text-neutral-400 hover:bg-gray-50 outline-none placeholder-neutral-400 border focus:border-neutral-600 border-neutral-200 rounded-lg" id="stepsInput4-1" type="text" placeholder="Type a name" />
-                        </div>
-                        <div class="w-full sm:w-auto p-1"><a class="inline-flex flex-wrap items-center justify-center px-5 py-3.5 w-full text-sm text-neutral-50 hover:text-neutral-100 font-medium text-center bg-neutral-600 hover:bg-opacity-95 rounded-lg focus:ring-4 focus:ring-neutral-400" href="#">Create</a></div>
+                        {
+                          created
+                            ? <></>
+                            : <>
+                              <div class="w-full sm:flex-1 p-1">
+                                <input class="px-4 py-3.5 w-full text-sm text-neutral-400 hover:bg-gray-50 outline-none placeholder-neutral-400 border focus:border-neutral-600 border-neutral-200 rounded-lg" id="stepsInput4-1" type="text" placeholder="Type a name" onInput={e => setDatabaseName(e.target.value)} />
+                              </div>
+                              <div class="w-full sm:w-auto p-1"><a class="inline-flex flex-wrap items-center justify-center px-5 py-3.5 w-full text-sm text-neutral-50 hover:text-neutral-100 font-medium text-center bg-neutral-600 hover:bg-opacity-95 rounded-lg focus:ring-4 focus:ring-neutral-400" onClick={e => createDatabase()}>Create</a></div>
+                            </>
+                        }
                       </div>
                     </div>
                   </div>
@@ -271,86 +304,9 @@ const Dashboard = () => {
                 </div>
               </div>
             </section>
-
-
-
-
-            {/* 
-            {activeComponent === 'Dashboard' && <DashbordHomeview />}
-            {activeComponent === 'API' && <APIview />}
-            {activeComponent === 'User' && <Userprofile />}
-            {activeComponent === 'MediaLibrary' && <LoadImages />}
-      */}
-
-          </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        </div>
-      </section>
-
-
-
-
-
-
-
-      {/*Pagination 
-
-      <section class="py-3">
-        <div class="container px-4 mx-auto">
-          <div class="p-6">
-            <div class="flex flex-wrap items-center justify-between -m-2">
-              <div class="order-2 sm:w-auto sm:order-1 p-2">
-                <a class="inline-flex group items-center text-sm font-semibold" href="#">
-                  <span class="text-black-400 group-hover:text-black-300">
-                    <svg width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M7.33294 4.33338H2.27294L4.47294 2.14004C4.59847 2.01451 4.669 1.84424 4.669 1.66671C4.669 1.48917 4.59847 1.31891 4.47294 1.19338C4.3474 1.06784 4.17714 0.997314 3.99961 0.997314C3.82207 0.997314 3.65181 1.06784 3.52627 1.19338L0.192939 4.52671C0.132245 4.59011 0.0846683 4.66487 0.0529387 4.74671C-0.01374 4.90902 -0.01374 5.09107 0.0529387 5.25338C0.0846683 5.33521 0.132245 5.40997 0.192939 5.47338L3.52627 8.80671C3.58825 8.86919 3.66198 8.91879 3.74322 8.95264C3.82446 8.98648 3.9116 9.00391 3.99961 9.00391C4.08761 9.00391 4.17475 8.98648 4.25599 8.95264C4.33723 8.91879 4.41096 8.86919 4.47294 8.80671C4.53542 8.74473 4.58502 8.671 4.61887 8.58976C4.65271 8.50852 4.67014 8.42138 4.67014 8.33337C4.67014 8.24537 4.65271 8.15823 4.61887 8.07699C4.58502 7.99575 4.53542 7.92202 4.47294 7.86004L2.27294 5.66671H7.33294C7.50975 5.66671 7.67932 5.59647 7.80434 5.47145C7.92937 5.34642 7.99961 5.17685 7.99961 5.00004C7.99961 4.82323 7.92937 4.65366 7.80434 4.52864C7.67932 4.40361 7.50975 4.33338 7.33294 4.33338Z" fill="currentColor"></path>
-                    </svg>
-                  </span>
-                  <span class="ml-2 text-black-300 group-hover:text-black-200">Previous</span>
-                </a>
-              </div>
-              <div class="order-1 w-full sm:w-auto p-2">
-                <div class="flex items-center"><a class="inline-block px-4 text-sm font-semibold text-gray-100 hover:text-gray-200" href="#">1</a><a class="px-4 text-sm font-semibold text-gray-100 hover:text-gray-200" href="#">2</a><a class="hidden sm:inline-block px-4 text-sm font-semibold text-gray-100 hover:text-gray-200" href="#">3</a><a class="inline-block px-4 text-sm text-gray-400 hover:text-gray-300" href="#">...</a><a class="hidden sm:inline-block px-4 text-sm font-semibold text-gray-100 hover:text-gray-200" href="#">44</a><a class="inline-block px-4 text-sm font-semibold text-gray-100 hover:text-gray-200" href="#">45</a></div>
-              </div>
-              <div class="order-3 sm:w-auto p-2">
-                <a class="inline-flex group items-center text-sm font-semibold" href="#">
-                  <span class="mr-2 text-black-100 group-hover:text-black-200">Next</span>
-                  <span class="text-black-400 group-hover:text-black-300">
-                    <svg width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M0.667061 5.66663L5.72706 5.66662L3.52706 7.85996C3.40152 7.98549 3.331 8.15576 3.331 8.33329C3.331 8.51083 3.40152 8.68109 3.52706 8.80662C3.6526 8.93216 3.82286 9.00269 4.00039 9.00269C4.17793 9.00269 4.34819 8.93216 4.47373 8.80662L7.80706 5.47329C7.86775 5.40989 7.91533 5.33513 7.94706 5.25329C8.01374 5.09098 8.01374 4.90893 7.94706 4.74662C7.91533 4.66479 7.86775 4.59003 7.80706 4.52662L4.47373 1.19329C4.41175 1.13081 4.33802 1.08121 4.25678 1.04736C4.17554 1.01352 4.0884 0.996093 4.00039 0.996093C3.91239 0.996093 3.82525 1.01352 3.74401 1.04736C3.66277 1.08121 3.58904 1.13081 3.52706 1.19329C3.46457 1.25527 3.41498 1.329 3.38113 1.41024C3.34729 1.49148 3.32986 1.57862 3.32986 1.66663C3.32986 1.75463 3.34729 1.84177 3.38113 1.92301C3.41498 2.00425 3.46457 2.07798 3.52706 2.13996L5.72706 4.33329L0.667061 4.33329C0.49025 4.33329 0.32068 4.40353 0.195656 4.52855C0.0706316 4.65358 0.000394456 4.82315 0.000394471 4.99996C0.000394487 5.17677 0.0706317 5.34634 0.195656 5.47136C0.32068 5.59639 0.49025 5.66663 0.667061 5.66663Z" fill="currentColor"></path>
-                    </svg>
-                  </span>
-                </a>
-              </div>
-            </div>
           </div>
         </div>
       </section>
-*/}
-
-
-
-
     </body>
 
 
