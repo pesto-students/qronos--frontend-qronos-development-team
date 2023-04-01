@@ -20,6 +20,8 @@ import Footer from './components/Home/Footer';
 import { CounterContext, DatabaseContext, UserContext } from './context/context';
 import { LocalStorage, LocalStorageKeys } from './utils/LocalStorage';
 
+import AWS from 'aws-sdk';
+
 
 function App() {
     const { isAuthenticated, user, logout } = useAuth0();
@@ -32,6 +34,13 @@ function App() {
     } = useContext(DatabaseContext)
     const { setUser } = useContext(UserContext)
     const { counter, setCounter } = useContext(CounterContext)
+
+    // AWS.config.update({
+    //     accessKeyId: 'AKIAQCUQ2ARQBJLLDHVW',
+    //     secretAccessKey: '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',
+    //     region: 'ap-south-1',
+    // });
+
 
     const apiCallUser = async () => {
         console.log(user.email);
