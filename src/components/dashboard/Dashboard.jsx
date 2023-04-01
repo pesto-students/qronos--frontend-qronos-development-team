@@ -3,7 +3,7 @@ import './dashboard.css'
 import { useState } from 'react'
 import Sidebar from './components/Sidebar'
 import axios from 'axios'
-import { CounterContext, DatabaseContext, UserContext } from '../../context/context'
+import { CounterContext, DatabaseContext, s3, UserContext } from '../../context/context'
 import { useNavigate } from 'react-router-dom'
 const Dashboard = () => {
 
@@ -13,19 +13,57 @@ const Dashboard = () => {
   const navigate = useNavigate()
   const { user } = useContext(UserContext)
   const {
-    setAllDatabases
+    setAllDatabases,
+    setFolderKey
   } = useContext(DatabaseContext)
 
   const { counter, setCounter } = useContext(CounterContext)
 
+  const createAnObject = async (name) => {
+    const params = {
+      Bucket: 'qronos-1',
+      Key: `${name}/`,
+      Body: '',
+      ACL: 'public-read',
+    };
+    s3.putObject(params, (err, data) => {
+      if (err) {
+        console.error(err);
+      } else {
+        setFolderKey(name)
+        console.log(`Folder created successfully. ${data.Location}`);
+      }
+    });
+  }
+
+  const consistObject = async (id) => {
+
+    let folderExists = false
+    s3.listObjectsV2({
+      Bucket: 'qronos-1',
+      Prefix: `${id}/`,
+      MaxKeys: 1
+    }, function (err, data) {
+      folderExists = data.Contents.length > 0;
+    });
+    return folderExists
+  }
+
+
+
   const createDatabase = async () => {
     if (!databaseName) return
-    console.log(databaseName);
     await axios.post(`http://localhost:8080/database/${databaseName}`, {
       emailId: user.email
     })
-      .then((res) => {
-        console.log(res);
+      .then(async (res) => {
+        const id = res.data.database.find(({ name }) => name === databaseName)
+        const folderExists = await consistObject(id._id)
+        if (folderExists) {
+          setFolderKey(id._id)
+        } else {
+          createAnObject(id._id)
+        }
         setAllDatabases(res)
         setCounter(counter + 1)
         setCreated(true)

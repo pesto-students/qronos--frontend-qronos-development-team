@@ -9,12 +9,15 @@ export const DatabaseProvider = ({
 }) => {
     const [database, setDatabase] = useState(localStorage ? LocalStorage?.get(LocalStorageKeys?.DATABASE_BASE_DETAILS) : null)
     const [allDatabases, setAllDatabases] = useState()
+    const [folderKey, setFolderKey] = useState()
     return (
         <DatabaseContext.Provider value={{
             database,
             setDatabase,
             allDatabases,
-            setAllDatabases
+            setAllDatabases,
+            folderKey, 
+            setFolderKey
         }}>
             {children}
         </DatabaseContext.Provider>

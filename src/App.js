@@ -30,7 +30,8 @@ function App() {
     const {
         setDatabase,
         allDatabases,
-        setAllDatabases
+        setAllDatabases,
+        setFolderKey
     } = useContext(DatabaseContext)
     const { setUser } = useContext(UserContext)
     const { counter, setCounter } = useContext(CounterContext)
@@ -62,6 +63,7 @@ function App() {
             }))
             if (result.data.database.length > 0) {
                 setDatabase(result.data.database[0])
+                setFolderKey(result.data.database[0]._id)
                 setAllDatabases(result.data.database)
                 LocalStorage.set(LocalStorageKeys.DATABASE_BASE_DETAILS, JSON.stringify(result.data.database[0]))
             } else {

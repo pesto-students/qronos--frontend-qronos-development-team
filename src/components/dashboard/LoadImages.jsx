@@ -1,38 +1,57 @@
-import React, { useEffect, useState, useRef } from 'react'
-import { s3 } from '../../context/context'
+import React, { useEffect, useState, useRef, useContext } from 'react'
+import { DatabaseContext, s3 } from '../../context/context'
 import Sidebar from './components/Sidebar'
 import MediaLoadFiles from './MediaLoadFiles'
 const LoadImages = () => {
-
+  const [file, setFile] = useState(null);
+  const fileInputRef = useRef(null);
+  const [allFiles, setAllFiles] = useState([])
+  // const [uploaded, setUploaded] = useState(false)
   // const [file, setFile] = useState()
+  const { folderKey } = useContext(DatabaseContext)
+
   useEffect(() => {
     console.log(file);
-    if (file)
-      s3.upload({
-        Bucket: "qronos-1",
-        Key: `testing/${file.name}`,
-        Body: file,
-      }, (err, data) => {
-        if (err) {
-          console.error(err);
-        } else {
-          console.log(data);
-          console.log(`File uploaded successfully. ${data.Location}`);
-        }
-      })
+    // if (file)
   }, [file])
 
+  const fileUpload = async e => {
+    await s3.upload({
+      Bucket: "qronos-1",
+      Key: `${folderKey}/${file.name}`,
+      Body: file,
+    }, (err, data) => {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log(data);
+        console.log(`File uploaded successfully. ${data.Location}`);
+        setFile(null) 
+      }
+    })
+  }
+
   const getAllImages = async () => {
+    console.log(folderKey);
     await s3.listObjectsV2(
       {
         Bucket: 'qronos-1',
-        Prefix: 'testing/'
+        Prefix: `${folderKey}/`
       },
       (err, data) => {
         if (err)
           console.log(err);
         else {
-          const assets = data.Contents.filter(obj => obj.Key.match(/\.(jpg|jpeg|png|gif)$/i));
+          const assets = data.Contents
+            .filter(obj => obj.Key.match(/\.(jpg|jpeg|png|gif)$/i))
+            .map((item) => {
+              return {
+                ...item,
+                previewLink: `https://qronos-1.s3.amazonaws.com/${item.Key.split(' ').join('+')}`
+              }
+            })
+
+          setAllFiles(assets)
           console.log(assets);
         }
       }
@@ -41,24 +60,8 @@ const LoadImages = () => {
 
   useEffect(() => {
     getAllImages()
-  }, [])
+  }, [folderKey, file])
 
-  const createAnObject = async () => {
-    const params = {
-      Bucket: 'qronos-1',
-      Key: `asdasdas/`,
-      Body: '',
-      ACL: 'public-read',
-    };
-    s3.putObject(params, (err, data) => {
-      if (err) {
-        console.error(err);
-      } else {
-        console.log(data);
-        console.log(`Folder created successfully. ${data.Location}`);
-      }
-    });
-  }
 
   const deleteAsset = async () => {
     const params = {
@@ -73,8 +76,6 @@ const LoadImages = () => {
       }
     });
   }
-  const [file, setFile] = useState(null);
-  const fileInputRef = useRef(null);
 
   const handleFileInputChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -115,31 +116,25 @@ const LoadImages = () => {
                     <button class="inline-flex flex-wrap items-center justify-center px-6 py-2.5 border hover:border-neutral-200 rounded-lg bg-purple-200 text-lg font-bold" onClick={handleButtonClick}>
                       <svg class="mr-2.5" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8.74935 2.66663C8.74935 2.25241 8.41356 1.91663 7.99935 1.91663C7.58514 1.91663 7.24935 2.25241 7.24935 2.66663H8.74935ZM7.24935 13.3333C7.24935 13.7475 7.58514 14.0833 7.99935 14.0833C8.41356 14.0833 8.74935 13.7475 8.74935 13.3333H7.24935ZM13.3327 8.74996C13.7469 8.74996 14.0827 8.41417 14.0827 7.99996C14.0827 7.58575 13.7469 7.24996 13.3327 7.24996L13.3327 8.74996ZM2.66602 7.24996C2.2518 7.24996 1.91602 7.58575 1.91602 7.99996C1.91602 8.41417 2.2518 8.74996 2.66602 8.74996L2.66602 7.24996ZM7.24935 2.66663V13.3333H8.74935V2.66663H7.24935ZM13.3327 7.24996L2.66602 7.24996L2.66602 8.74996L13.3327 8.74996L13.3327 7.24996Z" fill="#0C1523"></path>
-                      </svg><span class="font-medium">Add A Asset</span></button>
-                    {file && <p>Selected file: {file.name}</p>}
+                      </svg>
+                      <span class="font-medium">Add A Asset</span>
+                    </button>
+                    {file && <div>
+                      <p>Selected file: {file.name}</p>
+                      <button class="inline-flex flex-wrap items-center justify-center px-6 py-2.5 border hover:border-neutral-200 rounded-lg bg-purple-200 text-lg font-bold" onClick={fileUpload}>
+                        <span class="font-medium">Add the Asset</span>
+                      </button>
+                    </div>
+                    }
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
-        <MediaLoadFiles />
+        <MediaLoadFiles allFiles={allFiles} />
       </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   )
 }
 
