@@ -4,6 +4,7 @@ import { DatabaseContext, UserContext } from '../../context/context'
 import axios from 'axios'
 import { Link, useNavigate, useParams } from "react-router-dom"
 // import { useParams } from "react-router-dom";
+import Nocontentview from './Nocontentview'
 const Contentview = () => {
 
   const { database } = useContext(DatabaseContext)
@@ -113,10 +114,36 @@ const Contentview = () => {
                       </button>
                     }
                     <div class="w-auto p-2">
-                      <button class="inline-flex flex-wrap items-center justify-center px-5 py-2.5 w-full font-medium text-sm text-center bg-black text-white rounded-xl" onClick={() => navigate('/content/product/')}>+ Add Product Entry</button>
-                    </div>
-                    <div class="w-auto p-2">
-                      <button class="inline-flex flex-wrap items-center justify-center px-5 py-2.5 w-full font-medium text-sm text-center bg-black text-white rounded-xl" onClick={() => navigate('/content/blog/')}>+ Add Blog Entry</button>
+                      <div class="mb-6">
+                        <label class="block font-heading mb-2.5 text-sm font-semibold">Add an Entry</label>
+                        <div class="relative h-full sm:max-w-md">
+                          <select
+                            class="appearance-none py-2 pl-3.5 pr-10 text-sm w-full h-full bg-white hover:bg-gray-50 outline-none border border-neutral-200 focus:border-neutral-600 cursor-pointer rounded-lg"
+                            wtx-context="AB9056F5-8C50-41DC-8E52-487651AC62B4"
+                            onChange={e => {
+                              if (e.target.value === "productEntry")
+                                navigate('/content/product/')
+                              else if (e.target.value === "blogEntry")
+                                navigate('/content/blog/')
+                            }}
+                          >
+                            <option value="" disabled selected>Select an Entry Type</option>
+                            <option value="productEntry">Add a Product Entry</option>
+                            <option value="blogEntry">Add a Blog Entry</option>
+                          </select><svg class="absolute top-1/2 right-4 transform -translate-y-1/2" width="16" height="22" viewBox="0 0 16 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.6673 9L8.00065 13.6667L3.33398 9" stroke="#0C1523" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          </svg>
+                        </div>
+                      </div>
+
+
+
+
+
+
+
+
+
                     </div>
                     <div class="w-auto"></div>
                   </div>
@@ -205,8 +232,29 @@ const Contentview = () => {
             </div>
           </div>
         </section>
+
+        <Nocontentview />
       </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   )
 }
