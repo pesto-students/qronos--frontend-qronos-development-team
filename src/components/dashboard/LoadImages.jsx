@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import { s3 } from '../../context/context'
 import Sidebar from './components/Sidebar'
-import AWS from 'aws-sdk'
 const LoadImages = () => {
 
   const [file, setFile] = useState()
-  const s3 = new AWS.S3({
-    accessKeyId: 'AKIAQCUQ2ARQBJLLDHVW',
-    secretAccessKey: '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',
-    region: 'ap-south-1',
-  })
-
   useEffect(() => {
     console.log(file);
     if (file)
@@ -21,10 +15,49 @@ const LoadImages = () => {
         if (err) {
           console.error(err);
         } else {
+          console.log(data);
           console.log(`File uploaded successfully. ${data.Location}`);
         }
       })
   }, [file])
+
+  const getAllImages = async () => {
+    await s3.listObjectsV2(
+      {
+        Bucket: 'qronos-1',
+        Prefix: 'testing/'
+      },
+      (err, data) => {
+        if (err)
+          console.log(err);
+        else {
+          const assets = data.Contents.filter(obj => obj.Key.match(/\.(jpg|jpeg|png|gif)$/i));
+          console.log(assets);
+        }
+      }
+    )
+  }
+
+  useEffect(() => {
+    getAllImages()
+  }, [])
+
+  const createAnObject = async () => {
+    const params = {
+      Bucket: 'qronos-1',
+      Key: `asdasdas/`,
+      Body: '',
+      ACL: 'public-read',
+    };
+    s3.putObject(params, (err, data) => {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log(data);
+        console.log(`Folder created successfully. ${data.Location}`);
+      }
+    });
+  }
 
   return (
     <div class="relative">
@@ -65,6 +98,7 @@ const LoadImages = () => {
                       <svg class="mr-2.5" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8.74935 2.66663C8.74935 2.25241 8.41356 1.91663 7.99935 1.91663C7.58514 1.91663 7.24935 2.25241 7.24935 2.66663H8.74935ZM7.24935 13.3333C7.24935 13.7475 7.58514 14.0833 7.99935 14.0833C8.41356 14.0833 8.74935 13.7475 8.74935 13.3333H7.24935ZM13.3327 8.74996C13.7469 8.74996 14.0827 8.41417 14.0827 7.99996C14.0827 7.58575 13.7469 7.24996 13.3327 7.24996L13.3327 8.74996ZM2.66602 7.24996C2.2518 7.24996 1.91602 7.58575 1.91602 7.99996C1.91602 8.41417 2.2518 8.74996 2.66602 8.74996L2.66602 7.24996ZM7.24935 2.66663V13.3333H8.74935V2.66663H7.24935ZM13.3327 7.24996L2.66602 7.24996L2.66602 8.74996L13.3327 8.74996L13.3327 7.24996Z" fill="#0C1523"></path>
                       </svg><span class="font-medium">Add A Asset</span></button>
+                    <button onClick={() => createAnObject()}>Create an object</button>
                   </div>
                 </div>
               </div>

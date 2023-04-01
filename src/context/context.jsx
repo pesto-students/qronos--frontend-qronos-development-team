@@ -1,5 +1,6 @@
 import React, { createContext, useState } from "react";
 import { LocalStorage, LocalStorageKeys } from "../utils/LocalStorage";
+import AWS from 'aws-sdk'
 
 export const DatabaseContext = createContext({})
 
@@ -47,3 +48,10 @@ export const CounterProvider = ({
         </CounterContext.Provider>
     )
 }
+
+export const s3 = new AWS.S3({
+    accessKeyId: 'AKIAQCUQ2ARQBJLLDHVW',
+    secretAccessKey: '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',
+    region: 'ap-south-1',
+})
+
