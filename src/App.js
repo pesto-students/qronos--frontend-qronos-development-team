@@ -39,7 +39,7 @@ function App() {
 
     const consistObject = useConsistObject()
     const createAnObject = useCreateAnObject()
-  
+
     // AWS.config.update({
     //     accessKeyId: 'AKIAQCUQ2ARQBJLLDHVW',
     //     secretAccessKey: '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',
@@ -119,6 +119,7 @@ function App() {
                     <Route path='/content/product' element={<ContentProductEntry />} />
                     <Route path='/content/blog' element={<ContentBlogEntry />} />
                     <Route path='/404' element={<NotFound404 />} />
+                    <Route path='*' element={<Navigate to="/404" />} />
                 </Routes>
             </BrowserRouter>
         </div>
