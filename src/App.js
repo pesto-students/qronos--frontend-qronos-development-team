@@ -32,7 +32,8 @@ function App() {
         setDatabase,
         allDatabases,
         setAllDatabases,
-        setFolderKey
+        setFolderKey,
+        currentDatabase
     } = useContext(DatabaseContext)
     const { setUser } = useContext(UserContext)
     const { counter, setCounter } = useContext(CounterContext)
@@ -64,18 +65,18 @@ function App() {
                 email: result.data.email,
                 name: result.data.name
             }))
-            console.log("result", result.data.database[0]._id);
+            console.log("result", result.data.database[currentDatabase]._id);
             if (result.data.database.length > 0) {
-                setDatabase(result.data.database[0])
-                const folderExists = await consistObject(result.data.database[0]._id)
+                setDatabase(result.data.database[currentDatabase])
+                const folderExists = await consistObject(result.data.database[currentDatabase]._id)
                 if (folderExists) {
-                    setFolderKey(result.data.database[0]._id)
+                    setFolderKey(result.data.database[currentDatabase]._id)
                 } else {
-                    createAnObject(result.data.database[0]._id)
+                    createAnObject(result.data.database[currentDatabase]._id)
                 }
                 // setFolderKey(result.data.database[0]._id)
                 setAllDatabases(result.data.database)
-                LocalStorage.set(LocalStorageKeys.DATABASE_BASE_DETAILS, JSON.stringify(result.data.database[0]))
+                LocalStorage.set(LocalStorageKeys.DATABASE_BASE_DETAILS, JSON.stringify(result.data.database[currentDatabase]))
             } else {
                 if (window.location.pathname !== '/dashboard')
                     window.location.replace('/dashboard')
@@ -119,7 +120,7 @@ function App() {
                     <Route path='/content/product' element={<ContentProductEntry />} />
                     <Route path='/content/blog' element={<ContentBlogEntry />} />
                     <Route path='/404' element={<NotFound404 />} />
-                    <Route path='*' element={<Navigate to="/404" />} />
+                    {/* <Route path='*' element={<Navigate to="/404" />} /> */}
                 </Routes>
             </BrowserRouter>
         </div>
