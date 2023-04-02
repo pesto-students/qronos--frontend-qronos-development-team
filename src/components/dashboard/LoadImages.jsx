@@ -26,7 +26,7 @@ const LoadImages = () => {
       } else {
         console.log(data);
         console.log(`File uploaded successfully. ${data.Location}`);
-        setFile(null) 
+        setFile(null)
       }
     })
   }
@@ -61,21 +61,6 @@ const LoadImages = () => {
   useEffect(() => {
     getAllImages()
   }, [folderKey, file])
-
-
-  const deleteAsset = async () => {
-    const params = {
-      Bucket: 'qronos-1',
-      Key: "testing/Untitled Diagram-Work Flow.drawio (3).png",
-    }
-    await s3.deleteObject(params, function (err, data) {
-      if (err) {
-        console.log(err, err.stack);
-      } else {
-        console.log('Image deleted successfully');
-      }
-    });
-  }
 
   const handleFileInputChange = (event) => {
     const selectedFile = event.target.files[0];

@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { LocalStorage, LocalStorageKeys } from "../utils/LocalStorage";
 import AWS from 'aws-sdk'
 
@@ -16,7 +16,7 @@ export const DatabaseProvider = ({
             setDatabase,
             allDatabases,
             setAllDatabases,
-            folderKey, 
+            folderKey,
             setFolderKey
         }}>
             {children}
@@ -58,3 +58,35 @@ export const s3 = new AWS.S3({
     region: 'ap-south-1',
 })
 
+
+// export const createAnObject = async (name) => {
+
+//     const { setFolderKey } = useContext(DatabaseContext)
+//     const params = {
+//         Bucket: 'qronos-1',
+//         Key: `${name}/`,
+//         Body: '',
+//         ACL: 'public-read',
+//     };
+//     s3.putObject(params, (err, data) => {
+//         if (err) {
+//             console.error(err);
+//         } else {
+//             setFolderKey(name)
+//             console.log(`Folder created successfully. ${data.Location}`);
+//         }
+//     });
+// }
+
+// export const consistObject = async (id) => {
+
+//     let folderExists = false
+//     s3.listObjectsV2({
+//         Bucket: 'qronos-1',
+//         Prefix: `${id}/`,
+//         MaxKeys: 1
+//     }, function (err, data) {
+//         folderExists = data.Contents.length > 0;
+//     });
+//     return folderExists
+// }

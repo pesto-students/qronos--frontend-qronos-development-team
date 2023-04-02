@@ -21,6 +21,7 @@ import { CounterContext, DatabaseContext, UserContext } from './context/context'
 import { LocalStorage, LocalStorageKeys } from './utils/LocalStorage';
 
 import AWS from 'aws-sdk';
+import { useConsistObject, useCreateAnObject } from './hooks';
 
 
 function App() {
@@ -36,6 +37,9 @@ function App() {
     const { setUser } = useContext(UserContext)
     const { counter, setCounter } = useContext(CounterContext)
 
+    const consistObject = useConsistObject()
+    const createAnObject = useCreateAnObject()
+  
     // AWS.config.update({
     //     accessKeyId: 'AKIAQCUQ2ARQBJLLDHVW',
     //     secretAccessKey: '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',
@@ -52,7 +56,6 @@ function App() {
                     name: user.name
                 }
             })
-            console.log("result", result);
             setUser({
                 email: result.data.email,
                 name: result.data.name
@@ -61,9 +64,16 @@ function App() {
                 email: result.data.email,
                 name: result.data.name
             }))
+            console.log("result", result.data.database[0]._id);
             if (result.data.database.length > 0) {
                 setDatabase(result.data.database[0])
-                setFolderKey(result.data.database[0]._id)
+                const folderExists = await consistObject(result.data.database[0]._id)
+                if (folderExists) {
+                    setFolderKey(result.data.database[0]._id)
+                } else {
+                    createAnObject(result.data.database[0]._id)
+                }
+                // setFolderKey(result.data.database[0]._id)
                 setAllDatabases(result.data.database)
                 LocalStorage.set(LocalStorageKeys.DATABASE_BASE_DETAILS, JSON.stringify(result.data.database[0]))
             } else {
