@@ -1,10 +1,14 @@
 import React from 'react'
+import Seo from '../Shared/Seo'
 import Sidebar from './components/Sidebar'
 const Userprofile = () => {
   return (
     <body class="antialiased bg-body text-body font-body">
       <div class="">
-
+        <Seo
+          title='Profile | The Ultimate Webinar Tool | QRONOS'
+          description='Edit Profile | The Ultimate Webinar Tool'
+        />
         <section class="relative">
           <Sidebar />
           <div class="mx-auto xl:ml-16 xl:pl-4">

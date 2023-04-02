@@ -6,6 +6,7 @@ import Footer from './Footer'
 import gradientbg from './svgs/gradient.svg'
 import testimonialbg from './svgs/Testimonial.svg'
 import testimonial2bg from './svgs/howitwork.svg'
+import Seo from '../Shared/Seo'
 const Home = () => {
   const bg_gradient = {
     backgroundImage: `url(${gradientbg})`,
@@ -30,6 +31,10 @@ const Home = () => {
 
     <div>
       <Header />
+      <Seo
+        title='QRONOS | The Ultimate Webinar Tool'
+        description='QRONOS | The Ultimate Webinar Tool'
+      />
       {/* Hero section*/}
 
       <section style={bg_gradient} class="relative overflow-hidden">

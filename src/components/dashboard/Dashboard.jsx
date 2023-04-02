@@ -7,6 +7,7 @@ import { CounterContext, DatabaseContext, s3, UserContext } from '../../context/
 import { useNavigate } from 'react-router-dom'
 import { useConsistObject } from '../../hooks/function/useConsistObject'
 import { useCreateAnObject } from '../../hooks/function/useCreateAnObject'
+import Seo from '../Shared/Seo'
 const Dashboard = () => {
 
   const [open, setopen] = useState(true)
@@ -49,6 +50,10 @@ const Dashboard = () => {
     <body class="antialiased bg-body text-body font-body">
 
 
+      <Seo
+        title='Dashboard | The Ultimate Webinar Tool | QRONOS'
+        description='Dashboard | The Ultimate Webinar Tool'
+      />
 
       <section class="flex">
 

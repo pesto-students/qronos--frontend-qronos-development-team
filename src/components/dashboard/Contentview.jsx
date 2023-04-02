@@ -5,6 +5,7 @@ import axios from 'axios'
 import { Link, useNavigate, useParams } from "react-router-dom"
 // import { useParams } from "react-router-dom";
 import Nocontentview from './Nocontentview'
+import Seo from '../Shared/Seo'
 const Contentview = () => {
 
   const { database } = useContext(DatabaseContext)
@@ -90,7 +91,10 @@ const Contentview = () => {
     <div class="relative">
       <Sidebar />
 
-
+      <Seo
+        title='Content View | The Ultimate Webinar Tool | QRONOS'
+        description='Content View | The Ultimate Webinar Tool'
+      />
       <div class="mx-auto xl:ml-16 xl:pl-4">
         {/* Header*/}
         <section class="py-4 overflow-hidden">

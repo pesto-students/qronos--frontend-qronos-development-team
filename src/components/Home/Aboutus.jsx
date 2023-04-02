@@ -2,9 +2,15 @@ import React from 'react'
 import Header from './Header'
 import CalltoAction from './CalltoAction'
 import Footer from './Footer'
+import Seo from '../Shared/Seo'
 const Aboutus = () => {
     return (
         <div>
+            <Seo
+                title='Learn About Us | The Ultimate Webinar Tool | QRONOS'
+                description='Learn About Us | The Ultimate Webinar Tool'
+            />
+
             <Header />
 
             <section class="pt-20 pb-32 overflow-hidden">

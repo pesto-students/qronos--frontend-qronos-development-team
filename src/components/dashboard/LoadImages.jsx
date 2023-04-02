@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef, useContext } from 'react'
 import { DatabaseContext, s3 } from '../../context/context'
+import Seo from '../Shared/Seo'
 import Sidebar from './components/Sidebar'
 import MediaLoadFiles from './MediaLoadFiles'
 const LoadImages = () => {
@@ -74,6 +75,10 @@ const LoadImages = () => {
   return (
 
     <div class="relative">
+      <Seo
+        title='Media Library | The Ultimate Webinar Tool | QRONOS'
+        description='View all Medias | The Ultimate Webinar Tool'
+      />
       <Sidebar />
       <div class="mx-auto xl:ml-16 xl:pl-4">
         <section class="py-4 overflow-hidden"><div class="container px-4 mx-auto">

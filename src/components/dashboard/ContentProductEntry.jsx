@@ -4,6 +4,7 @@ import axios from 'axios'
 import { DatabaseContext, UserContext } from '../../context/context'
 
 import { useLocation, useNavigate } from "react-router-dom"
+import Seo from '../Shared/Seo'
 
 const ContentEntry = () => {
 
@@ -110,6 +111,10 @@ const ContentEntry = () => {
         <body>
 
             <div class="relative">
+                <Seo
+                    title='Edit Product Entry | The Ultimate Webinar Tool | QRONOS'
+                    description='Edit Product Entry | The Ultimate Webinar Tool'
+                />
                 <Sidebar />
                 <div class="mx-auto xl:ml-16 xl:pl-4">
 

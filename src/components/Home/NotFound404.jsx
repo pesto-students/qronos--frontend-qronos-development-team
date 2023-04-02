@@ -1,9 +1,15 @@
 import React from 'react'
 import Header from './Header'
 import { Link } from 'react-router-dom'
+import Seo from '../Shared/Seo'
 const NotFound404 = () => {
     return (
+
         <div>
+            <Seo
+                title='404 Page | The Ultimate Webinar Tool | QRONOS'
+                description='404 Page | The Ultimate Webinar Tool'
+            />
             <Header />
 
             <section class="relative lg:py-20">
