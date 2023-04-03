@@ -15,6 +15,8 @@ import ContentProductEntry from './components/dashboard/ContentProductEntry';
 import ContentBlogEntry from './components/dashboard/ContentBlogEntry';
 import { useContext, useEffect } from 'react';
 import axios from 'axios';
+// import dotenv from 'dotenv';
+// dotenv.config();
 // import Header from './components/Home/Header';
 // import Footer from './components/Home/Footer';
 import { CounterContext, DatabaseContext, UserContext } from './context/context';

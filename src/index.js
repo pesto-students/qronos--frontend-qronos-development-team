@@ -6,10 +6,6 @@ import App from './App';
 import { Auth0Provider } from "@auth0/auth0-react";
 import { CounterProvider, DatabaseProvider, UserProvider } from './context/context';
 
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Auth0Provider
