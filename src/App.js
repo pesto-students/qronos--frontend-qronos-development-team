@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate, createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 
 import Dashboard from './components/dashboard/Dashboard';
 import Home from './components/Home/Home';
@@ -107,29 +107,40 @@ function App() {
         }
     }, [user, counter])
 
-    return (
-        <div>
-            <BrowserRouter>
+    console.log("user", user);
 
-                <Routes>
-                    <Route index element={<Home />} />
+    const router = createBrowserRouter([
+        {
+            path: '/',
+            element: <Home />
+        }, {
+            path: '/about',
+            element: <Aboutus />
+        }, {
+            path: '/404',
+            element: <NotFound404 />
+        }, {
+            path: '/api',
+            element: <Api />
+        }, {
+            path: '/dashboard',
+            element: <Dashboard />
+        }, {
+            path: '/medialibrary',
+            element: <LoadImages />
+        }, {
+            path: '/content',
+            element: <Contentview />
+        }, {
+            path: '/content/product',
+            element: <ContentProductEntry />
+        }, {
+            path: '/content/blog',
+            element: <ContentBlogEntry />
+        }
+    ])
 
-                    <Route path='/dashboard' element={<Dashboard />} />
-                    <Route path='/signin' element={<Signin />} />
-                    <Route path='/signup' element={<Signup />} />
-                    <Route path='/about' element={<Aboutus />} />
-                    <Route path='/api' element={<Api />} />
-                    <Route path='/userprofile' element={<Userprofile />} />
-                    <Route path='/medialibrary' element={<LoadImages />} />
-                    <Route path='/content' element={<Contentview />} />
-                    <Route path='/content/product' element={<ContentProductEntry />} />
-                    <Route path='/content/blog' element={<ContentBlogEntry />} />
-                    <Route path='/404' element={<NotFound404 />} />
-                    {/* <Route path='*' element={<Navigate to="/404" />} /> */}
-                </Routes>
-            </BrowserRouter>
-        </div>
-    );
+    return <RouterProvider router={router} />
 }
 
 export default App;
