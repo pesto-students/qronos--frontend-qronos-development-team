@@ -60,6 +60,9 @@ function App() {
                 params: {
                     emailId: user.email,
                     name: user.name
+                },
+                headers: {
+                    'Access-Control-Allow-Origin': '*'
                 }
             })
             setUser({
