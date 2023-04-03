@@ -5,11 +5,16 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import { Auth0Provider } from "@auth0/auth0-react";
 import { CounterProvider, DatabaseProvider, UserProvider } from './context/context';
+
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Auth0Provider
-    domain="dev-7n4a6yqea7j5wzkq.us.auth0.com"
-    clientId="cwzARrnNc0tlj2vtMDDJSFoXBNesqB3N"
+    domain={process.env.AUTH_DOMAIN}
+    clientId={process.env.AUTH_CLIENT}
     authorizationParams={{
       redirect_uri: window.location.origin
     }}

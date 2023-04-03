@@ -18,7 +18,7 @@ const LoadImages = () => {
 
   const fileUpload = async e => {
     await s3.upload({
-      Bucket: "qronos-1",
+      Bucket: process.env.S3_BUCKET,
       Key: `${folderKey}/${file.name}`,
       Body: file,
     }, (err, data) => {
@@ -36,7 +36,7 @@ const LoadImages = () => {
     console.log(folderKey);
     await s3.listObjectsV2(
       {
-        Bucket: 'qronos-1',
+        Bucket: process.env.S3_BUCKET,
         Prefix: `${folderKey}/`
       },
       (err, data) => {
@@ -48,7 +48,7 @@ const LoadImages = () => {
             .map((item) => {
               return {
                 ...item,
-                previewLink: `https://qronos-1.s3.amazonaws.com/${item.Key.split(' ').join('+')}`
+                previewLink: `https://${process.env.S3_BUCKET}.s3.amazonaws.com/${item.Key.split(' ').join('+')}`
               }
             })
 
@@ -77,7 +77,7 @@ const LoadImages = () => {
     <div class="relative">
       <Seo
         title='Media Library | The Ultimate Webinar Tool | QRONOS'
-        description='View all Medias | The Ultimate Webinar Tool'
+        description='View all | The Ultimate Webinar Tool'
       />
       <Sidebar />
       <div class="mx-auto xl:ml-16 xl:pl-4">

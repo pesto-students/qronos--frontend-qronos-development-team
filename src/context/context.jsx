@@ -56,9 +56,9 @@ export const CounterProvider = ({
 }
 
 export const s3 = new AWS.S3({
-    accessKeyId: 'AKIAQCUQ2ARQBJLLDHVW',
-    secretAccessKey: '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',
-    region: 'ap-south-1',
+    accessKeyId: process.env.S3_ACCESS_KEY,
+    secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+    region: process.env.S3_REGION,
 })
 
 

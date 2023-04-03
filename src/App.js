@@ -15,12 +15,12 @@ import ContentProductEntry from './components/dashboard/ContentProductEntry';
 import ContentBlogEntry from './components/dashboard/ContentBlogEntry';
 import { useContext, useEffect } from 'react';
 import axios from 'axios';
-import Header from './components/Home/Header';
-import Footer from './components/Home/Footer';
+// import Header from './components/Home/Header';
+// import Footer from './components/Home/Footer';
 import { CounterContext, DatabaseContext, UserContext } from './context/context';
 import { LocalStorage, LocalStorageKeys } from './utils/LocalStorage';
 
-import AWS from 'aws-sdk';
+// import AWS from 'aws-sdk';
 import { useConsistObject, useCreateAnObject } from './hooks';
 
 
@@ -51,7 +51,7 @@ function App() {
     const apiCallUser = async () => {
         console.log(user.email);
         try {
-            const result = await axios.get(`http://localhost:8080/get-user`, {
+            const result = await axios.get(`${process.env.API_URL}/get-user`, {
                 params: {
                     emailId: user.email,
                     name: user.name
