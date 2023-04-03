@@ -30,7 +30,7 @@ function App() {
     const { isAuthenticated, user, logout } = useAuth0();
     // console.log(user);
 
-    // console.log(process.env.REACT_APP_REACT_APP_API_URL);
+    console.log(process.env.REACT_APP_API_URL);
 
     // const navigate = useNavigate()
     const {
