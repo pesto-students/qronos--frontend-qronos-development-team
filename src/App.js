@@ -30,7 +30,7 @@ function App() {
     const { isAuthenticated, user, logout } = useAuth0();
     // console.log(user);
 
-    console.log(process.env.REACT_APP_.REACT_APP_API_URL);
+    // console.log(process.env.REACT_APP_REACT_APP_API_URL);
 
     // const navigate = useNavigate()
     const {
@@ -56,7 +56,7 @@ function App() {
     const apiCallUser = async () => {
         console.log(user.email);
         try {
-            const result = await axios.get(`${process.env.REACT_APP_.API_URL}/get-user`, {
+            const result = await axios.get(`${process.env.REACT_APP_API_URL}/get-user`, {
                 params: {
                     emailId: user.email,
                     name: user.name

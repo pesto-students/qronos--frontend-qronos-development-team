@@ -18,7 +18,7 @@ const LoadImages = () => {
 
   const fileUpload = async e => {
     await s3.upload({
-      Bucket: process.env.REACT_APP_.S3_BUCKET,
+      Bucket: process.env.REACT_APP_S3_BUCKET,
       Key: `${folderKey}/${file.name}`,
       Body: file,
     }, (err, data) => {
@@ -36,7 +36,7 @@ const LoadImages = () => {
     console.log(folderKey);
     await s3.listObjectsV2(
       {
-        Bucket: process.env.REACT_APP_.S3_BUCKET,
+        Bucket: process.env.REACT_APP_S3_BUCKET,
         Prefix: `${folderKey}/`
       },
       (err, data) => {
@@ -48,7 +48,7 @@ const LoadImages = () => {
             .map((item) => {
               return {
                 ...item,
-                previewLink: `https://${process.env.REACT_APP_.S3_BUCKET}.s3.amazonaws.com/${item.Key.split(' ').join('+')}`
+                previewLink: `https://${process.env.REACT_APP_S3_BUCKET}.s3.amazonaws.com/${item.Key.split(' ').join('+')}`
               }
             })
 

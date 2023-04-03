@@ -34,7 +34,7 @@ const ContentEntry = () => {
     const getValues = async () => {
         try {
             console.log(routeParams, database._id);
-            const result = await axios.get(`${process.env.REACT_APP_.API_URL}/blog/${routeParams}`, {
+            const result = await axios.get(`${process.env.REACT_APP_API_URL}/blog/${routeParams}`, {
                 params: {
                     email: user.email,
                     databaseId: database._id
@@ -65,7 +65,7 @@ const ContentEntry = () => {
         const databaseId = database._id
         if (routeParams) {
             if (!title) return
-            const url = `${process.env.REACT_APP_.API_URL}/blog/${databaseId}/${routeParams}`
+            const url = `${process.env.REACT_APP_API_URL}/blog/${databaseId}/${routeParams}`
             await axios.patch(url, {
                 blog: {
                     title,
@@ -83,7 +83,7 @@ const ContentEntry = () => {
                 })
         } else {
             if (!title) return
-            const url = `${process.env.REACT_APP_.API_URL}/blog/${databaseId}`
+            const url = `${process.env.REACT_APP_API_URL}/blog/${databaseId}`
             console.log(url);
             await axios.post(url, {
                 blog: {
