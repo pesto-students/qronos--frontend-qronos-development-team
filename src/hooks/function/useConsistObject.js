@@ -6,7 +6,7 @@ export const useConsistObject = () => {
 
         let folderExists = false
         s3.listObjectsV2({
-            Bucket: 'qronos-1',
+            Bucket: process.env.S3_BUCKET,
             Prefix: `${id}/`,
             MaxKeys: 1
         }, function (err, data) {

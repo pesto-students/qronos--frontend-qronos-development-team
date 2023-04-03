@@ -26,7 +26,7 @@ const ContentEntry = () => {
         const databaseId = database._id
         if (routeParams) {
             if (!title) return
-            const url = `http://localhost:8080/product/${databaseId}/${routeParams}`
+            const url = `${process.env.API_URL}/product/${databaseId}/${routeParams}`
             await axios.patch(url, {
                 product: {
                     title,
@@ -47,7 +47,7 @@ const ContentEntry = () => {
                 })
         } else {
             if (!title) return
-            const url = `http://localhost:8080/product/${databaseId}`
+            const url = `${process.env.API_URL}/product/${databaseId}`
             await axios.post(url, {
                 product: {
                     title,
@@ -77,7 +77,7 @@ const ContentEntry = () => {
 
     const getValues = async () => {
         try {
-            const result = await axios.get(`http://localhost:8080/product/${routeParams}`, {
+            const result = await axios.get(`${process.env.API_URL}/product/${routeParams}`, {
                 params: {
                     email: user.email,
                     databaseId: database._id
