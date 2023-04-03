@@ -6,7 +6,7 @@ export const useCreateAnObject = () => {
     const createAnObject = async (name) => {
 
         const params = {
-            Bucket: process.env.S3_BUCKET,
+            Bucket: process.env.REACT_APP_.S3_BUCKET,
             Key: `${name}/`,
             Body: '',
             ACL: 'public-read',

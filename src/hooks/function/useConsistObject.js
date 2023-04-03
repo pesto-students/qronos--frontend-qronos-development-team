@@ -6,7 +6,7 @@ export const useConsistObject = () => {
 
         let folderExists = false
         s3.listObjectsV2({
-            Bucket: process.env.S3_BUCKET,
+            Bucket: process.env.REACT_APP_.S3_BUCKET,
             Prefix: `${id}/`,
             MaxKeys: 1
         }, function (err, data) {

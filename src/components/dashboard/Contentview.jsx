@@ -36,7 +36,7 @@ const Contentview = () => {
   console.log(deletedEntriesBlog, deletedEntriesProduct);
 
   const deleteEntries = async () => {
-    await axios.delete(`${process.env.API_URL}/database/${database._id}`, {
+    await axios.delete(`${process.env.REACT_APP_.API_URL}/database/${database._id}`, {
       data: {
         productIds: deletedEntriesProduct,
         blogIds: deletedEntriesBlog,
@@ -49,7 +49,7 @@ const Contentview = () => {
   }
 
   const getEntries = async () => {
-    const data = await axios.get(`${process.env.API_URL}/database/${database._id}`, {
+    const data = await axios.get(`${process.env.REACT_APP_.API_URL}/database/${database._id}`, {
       params: {
         emailId: user.email
       }
@@ -68,7 +68,7 @@ const Contentview = () => {
     console.log(entry);
     const type = entry.type.replace('Type', '')
     console.log(type);
-    const result = await axios.delete(`${process.env.API_URL}/${type}/${entry._id}`, {
+    const result = await axios.delete(`${process.env.REACT_APP_.API_URL}/${type}/${entry._id}`, {
       data: {
         email: user.email,
         database: database._id

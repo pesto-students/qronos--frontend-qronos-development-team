@@ -26,7 +26,7 @@ const Dashboard = () => {
   const { counter, setCounter } = useContext(CounterContext)
   const createDatabase = async () => {
     if (!databaseName) return
-    await axios.post(`${process.env.API_URL}/database/${databaseName}`, {
+    await axios.post(`${process.env.REACT_APP_.API_URL}/database/${databaseName}`, {
       emailId: user.email
     })
       .then(async (res) => {

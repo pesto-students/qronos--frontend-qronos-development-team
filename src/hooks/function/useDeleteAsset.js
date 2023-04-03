@@ -4,7 +4,7 @@ import { s3 } from '../../context/context';
 export const useDeleteAsset = () => {
     const deleteAsset = async (key) => {
         const params = {
-            Bucket: process.env.S3_BUCKET,
+            Bucket: process.env.REACT_APP_.S3_BUCKET,
             Key: key
         }
         await s3.deleteObject(params, function (err, data) {

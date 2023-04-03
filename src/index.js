@@ -9,8 +9,8 @@ import { CounterProvider, DatabaseProvider, UserProvider } from './context/conte
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Auth0Provider
-    domain={process.env.AUTH_DOMAIN}
-    clientId={process.env.AUTH_CLIENT}
+    domain={process.env.REACT_APP_.AUTH_DOMAIN}
+    clientId={process.env.REACT_APP_.AUTH_CLIENT}
     authorizationParams={{
       redirect_uri: window.location.origin
     }}
