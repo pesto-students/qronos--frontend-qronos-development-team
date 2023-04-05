@@ -35,7 +35,7 @@ const MediaLoadFiles = ({
                                     <img class="mb-4 w-full" src={item.previewLink} alt={item.Key.split('/')[1]} />
                                     <div class="flex flex-wrap items-center justify-between -m-2">
                                         <div class="w-auto p-2">
-                                            <h3 class="font-heading text-sm font-semibold">{item.Key.split('/')[1]}</h3>
+                                            <h3 class="font-heading text-sm font-semibold">{item.Key.split('/')[1].length > 17 ? `${item.Key.split('/')[1].substr(0, 17)}...` : item.Key.split('/')[1]}</h3>
                                         </div>
                                         <div class="w-auto p-2">
                                             <div class="w-auto p-2">
