@@ -33,8 +33,10 @@ const Dashboard = () => {
         const id = res.data.database.find(({ name }) => name === databaseName)
         const folderExists = await consistObject(id._id)
         if (folderExists) {
+          console.log("folderExists", folderExists, id._id);
           setFolderKey(id._id)
         } else {
+          console.log("create a new object");
           createAnObject(id._id)
         }
         setAllDatabases(res)
