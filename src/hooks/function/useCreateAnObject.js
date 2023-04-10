@@ -4,7 +4,7 @@ import { DatabaseContext, s3 } from '../../context/context';
 export const useCreateAnObject = () => {
     const { setFolderKey } = useContext(DatabaseContext)
     const createAnObject = async (name) => {
-        console.log("object name", name);
+        // console.log("object name", name);
         const params = {
             Bucket: process.env.REACT_APP_S3_BUCKET,
             Key: `${name}/`,
@@ -16,7 +16,7 @@ export const useCreateAnObject = () => {
                 console.error(err);
             } else {
                 setFolderKey(name)
-                console.log(`Folder created successfully. ${data.Location}`);
+                // console.log(`Folder created successfully. ${data.Location}`);
             }
         });
     }

@@ -18,7 +18,7 @@ const ContentEntry = () => {
     const [seoDescription, setSeoDescription] = useState('')
 
     const location = useLocation()
-    console.log(database);
+    // console.log(database);
 
     const routeParams = new URLSearchParams(location.search).get('entry');
     // console.log("routeParams", routeParams.get('entry'));
@@ -33,7 +33,7 @@ const ContentEntry = () => {
 
     const getValues = async () => {
         try {
-            console.log(routeParams, database._id);
+            // console.log(routeParams, database._id);
             const result = await axios.get(`${process.env.REACT_APP_API_URL}/blog/${routeParams}`, {
                 params: {
                     email: user.email,
@@ -54,7 +54,7 @@ const ContentEntry = () => {
     }, [routeParams])
 
     useEffect(() => {
-        console.log(database);
+        // console.log(database);
     }, [database])
 
     // const redirectToContentView = () => {
@@ -79,12 +79,12 @@ const ContentEntry = () => {
                 .then(function (response) {
                     // redirectToContentView()
                     navigate('/content')
-                    console.log(JSON.stringify(response.data));
+                    // console.log(JSON.stringify(response.data));
                 })
         } else {
             if (!title) return
             const url = `${process.env.REACT_APP_API_URL}/blog/${databaseId}`
-            console.log(url);
+            // console.log(url);
             await axios.post(url, {
                 blog: {
                     title,
@@ -98,7 +98,7 @@ const ContentEntry = () => {
                 .then(function (response) {
                     // redirectToContentView()
                     navigate('/content')
-                    console.log(JSON.stringify(response.data));
+                    // console.log(JSON.stringify(response.data));
                 })
         }
     }

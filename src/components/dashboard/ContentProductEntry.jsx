@@ -43,7 +43,7 @@ const ContentEntry = () => {
                 .then(function (response) {
                     // redirectToContentView()
                     navigate('/content')
-                    console.log(JSON.stringify(response.data));
+                    // console.log(JSON.stringify(response.data));
                 })
         } else {
             if (!title) return
@@ -64,16 +64,16 @@ const ContentEntry = () => {
                 .then(function (response) {
                     // redirectToContentView()
                     navigate('/content')
-                    console.log(JSON.stringify(response.data));
+                    // console.log(JSON.stringify(response.data));
                 })
         }
     }
 
     const location = useLocation()
-    console.log(location);
+    // console.log(location);
 
     const routeParams = new URLSearchParams(location.search).get('entry');
-    console.log("routeParams", routeParams);
+    // console.log("routeParams", routeParams);
 
     const getValues = async () => {
         try {
@@ -104,7 +104,7 @@ const ContentEntry = () => {
     }, [routeParams])
 
     useEffect(() => {
-        console.log(database);
+        // console.log(database);
     }, [database])
 
     return (

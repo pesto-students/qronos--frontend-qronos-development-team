@@ -30,7 +30,7 @@ function App() {
     const { isAuthenticated, user, logout } = useAuth0();
     // console.log(user);
 
-    console.log(process.env.REACT_APP_API_URL);
+    // console.log(process.env.REACT_APP_API_URL);
 
     // const navigate = useNavigate()
     const {
@@ -54,7 +54,7 @@ function App() {
 
 
     const apiCallUser = async () => {
-        console.log(user.email);
+        // console.log(user.email);
         try {
             const result = await axios.get(`${process.env.REACT_APP_API_URL}/get-user`, {
                 params: {
@@ -73,7 +73,7 @@ function App() {
                 email: result.data.email,
                 name: result.data.name
             }))
-            console.log("result", result.data.database[currentDatabase]._id);
+            // console.log("result", result.data.database[currentDatabase]._id);
             if (result.data.database.length > 0) {
                 setDatabase(result.data.database[currentDatabase])
                 const folderExists = await consistObject(result.data.database[currentDatabase]._id)
@@ -110,7 +110,7 @@ function App() {
         }
     }, [user, counter])
 
-    console.log("user", user);
+    // console.log("user", user);
 
     const router = createBrowserRouter([
         {

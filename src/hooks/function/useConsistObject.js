@@ -15,7 +15,7 @@ export const useConsistObject = () => {
                 folderExists = data?.Contents?.length > 0;
         });
 
-        console.log("folderExists", folderExists);
+        // console.log("folderExists", folderExists);
         return folderExists
     }
     return consistObject

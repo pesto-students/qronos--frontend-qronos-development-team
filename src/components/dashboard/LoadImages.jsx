@@ -11,11 +11,6 @@ const LoadImages = () => {
   // const [file, setFile] = useState()
   const { folderKey } = useContext(DatabaseContext)
 
-  useEffect(() => {
-    console.log(file);
-    // if (file)
-  }, [file])
-
   const fileUpload = async e => {
     await s3.upload({
       Bucket: process.env.REACT_APP_S3_BUCKET,
@@ -25,15 +20,15 @@ const LoadImages = () => {
       if (err) {
         console.error(err);
       } else {
-        console.log(data);
-        console.log(`File uploaded successfully. ${data.Location}`);
+        // console.log(data);
+        // console.log(`File uploaded successfully. ${data.Location}`);
         setFile(null)
       }
     })
   }
 
   const getAllImages = async () => {
-    console.log(folderKey);
+    // console.log(folderKey);
     await s3.listObjectsV2(
       {
         Bucket: process.env.REACT_APP_S3_BUCKET,
@@ -41,7 +36,7 @@ const LoadImages = () => {
       },
       (err, data) => {
         if (err)
-          console.log(err);
+          console.error(err);
         else {
           const assets = data.Contents
             .filter(obj => obj.Key.match(/\.(jpg|jpeg|png|gif)$/i))
@@ -53,7 +48,7 @@ const LoadImages = () => {
             })
 
           setAllFiles(assets)
-          console.log(assets);
+          // console.log(assets);
         }
       }
     )

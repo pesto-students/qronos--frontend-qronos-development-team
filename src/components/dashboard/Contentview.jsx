@@ -33,7 +33,7 @@ const Contentview = () => {
     }
   }
 
-  console.log(deletedEntriesBlog, deletedEntriesProduct);
+  // console.log(deletedEntriesBlog, deletedEntriesProduct);
 
   const deleteEntries = async () => {
     await axios.delete(`${process.env.REACT_APP_API_URL}/database/${database._id}`, {
@@ -54,7 +54,7 @@ const Contentview = () => {
         emailId: user.email
       }
     })
-    console.log(data);
+    // console.log(data);
     setEntries(data.data)
   }
 
@@ -65,16 +65,16 @@ const Contentview = () => {
   const navigate = useNavigate()
 
   const deleteEntry = async (entry) => {
-    console.log(entry);
+    // console.log(entry);
     const type = entry.type.replace('Type', '')
-    console.log(type);
+    // console.log(type);
     const result = await axios.delete(`${process.env.REACT_APP_API_URL}/${type}/${entry._id}`, {
       data: {
         email: user.email,
         database: database._id
       }
     })
-    console.log(result);
+    // console.log(result);
     getEntries()
   }
 
