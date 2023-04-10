@@ -10,7 +10,7 @@ import Api_view_logo from '../../../images/api-view.png'
 
 const Sidebar = () => {
     const [opensidebar, setopensidebar] = useState(false)
-    const [loginConsoleOpen, setLoginConsoleOpen] = useState(false)
+    // const [loginConsoleOpen, setLoginConsoleOpen] = useState(false)
     return (
         <Wrapper>
             <Container>
@@ -61,6 +61,7 @@ const Wrapper = styled.div`
     padding: 26px 16px;
     border-radius: 5px;
     box-shadow: 0 5px 15px rgba(226,223,236,.541);
+    z-index:10;
 `
 
 const Container = styled.div`
