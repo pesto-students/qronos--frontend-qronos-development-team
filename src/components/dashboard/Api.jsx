@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './dashboard.css'
 import { useState } from 'react'
 
@@ -19,6 +19,10 @@ const Api = () => {
   }
 
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!database) navigate('/')
+  }, [database])
 
   return (
 
@@ -78,7 +82,7 @@ const Api = () => {
                           </td>
                           <td class="py-3 pr-4 border-b border-neutral-100">
                             <Table_Row class="text-sm">
-                            https://backend-qronos.onrender.com/api/v1/all?database_id=&#10100;databaseID&#10101;
+                              https://backend-qronos.onrender.com/api/v1/all?database_id=&#10100;databaseID&#10101;
                             </Table_Row>
                           </td>
                         </tr>
@@ -90,7 +94,7 @@ const Api = () => {
                           </td>
                           <td class="py-3 pr-4 border-b border-neutral-100">
                             <Table_Row class="text-sm">
-                            https://backend-qronos.onrender.com/api/v1/product?database_id=&#10100;databaseID&#10101;
+                              https://backend-qronos.onrender.com/api/v1/product?database_id=&#10100;databaseID&#10101;
                             </Table_Row>
                           </td>
                         </tr>
@@ -102,7 +106,7 @@ const Api = () => {
                           </td>
                           <td class="py-3 pr-4 border-b border-neutral-100">
                             <Table_Row class="text-sm">
-                            https://backend-qronos.onrender.com/api/v1/blog?database_id=&#10100;databaseID&#10101;
+                              https://backend-qronos.onrender.com/api/v1/blog?database_id=&#10100;databaseID&#10101;
                             </Table_Row>
                           </td>
                         </tr>
@@ -117,7 +121,7 @@ const Api = () => {
             <section class="py-4 overflow-hidden"><div class="container px-4 mx-auto">
               <div class="pt-5 bg-neutral-50 border border-neutral-100 rounded-xl">
                 <div class="px-6">
-                <h3 class="font-heading mb-1.5 py-4 font-semibold text-lg text-4xl border-b">Private Keys</h3>
+                  <h3 class="font-heading mb-1.5 py-4 font-semibold text-lg text-4xl border-b">Private Keys</h3>
                   <div class="w-full overflow-x-auto">
                     <table class="w-full min-w-max">
                       <thead><tr class="text-left">

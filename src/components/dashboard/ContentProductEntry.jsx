@@ -22,6 +22,11 @@ const ContentEntry = () => {
     const [sku, setSku] = useState('')
     const [countryCode, setCountryCode] = useState('')
 
+    useEffect(() => {
+        if (!database) navigate('/')
+    }, [database])
+
+
     const publishData = async () => {
         const databaseId = database._id
         if (routeParams) {

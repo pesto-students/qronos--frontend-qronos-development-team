@@ -8,9 +8,23 @@ import Media_library_logo from '../../../images/media-library.png'
 import Content_logo from '../../../images/content.png'
 import Api_view_logo from '../../../images/api-view.png'
 
+import { useAuth0 } from "@auth0/auth0-react";
+import { LocalStorage } from '../../../utils/LocalStorage'
+
 const Sidebar = () => {
     const [opensidebar, setopensidebar] = useState(false)
     // const [loginConsoleOpen, setLoginConsoleOpen] = useState(false)
+
+    const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
+
+    const logoutFun = () => {
+        logout({ logoutParams: { returnTo: window.location.origin } })
+            .then(() => {
+                LocalStorage.clear()
+            })
+    }
+
+
     return (
         <Wrapper>
             <Container>
@@ -41,7 +55,7 @@ const Sidebar = () => {
                     />
                     {
                         opensidebar
-                        && <ProfileModal>
+                        && <ProfileModal onClick={() => logoutFun()}>
                             <div>Logout</div>
                         </ProfileModal>
                     }

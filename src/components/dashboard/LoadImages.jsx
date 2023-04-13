@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { DatabaseContext, s3 } from '../../context/context'
 import Seo from '../Shared/Seo'
 import Sidebar from './components/Sidebar'
@@ -9,8 +10,8 @@ const LoadImages = () => {
   const [allFiles, setAllFiles] = useState([])
   // const [uploaded, setUploaded] = useState(false)
   // const [file, setFile] = useState()
-  const { folderKey } = useContext(DatabaseContext)
-
+  const { folderKey, database } = useContext(DatabaseContext)
+  const navigate = useNavigate()
   const fileUpload = async e => {
     await s3.upload({
       Bucket: process.env.REACT_APP_S3_BUCKET,
@@ -26,6 +27,11 @@ const LoadImages = () => {
       }
     })
   }
+
+  useEffect(() => {
+    if (!database) navigate('/')
+  }, [database])
+
 
   const getAllImages = async () => {
     // console.log(folderKey);

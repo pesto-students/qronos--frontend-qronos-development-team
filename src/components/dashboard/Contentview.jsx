@@ -62,6 +62,8 @@ const Contentview = () => {
     getEntries()
   }, [database, counter])
 
+
+
   const navigate = useNavigate()
 
   const deleteEntry = async (entry) => {
@@ -77,6 +79,11 @@ const Contentview = () => {
     // console.log(result);
     getEntries()
   }
+
+  useEffect(() => {
+    if (!database) navigate('/')
+  }, [database])
+
 
   const shortenContent = (string, length) => {
     if (string.length < length) {
