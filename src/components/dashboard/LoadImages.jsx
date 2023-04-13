@@ -104,8 +104,8 @@ const LoadImages = () => {
                       </svg>
                       <span class="font-medium">Add A Asset</span>
                     </button>
-                    {file && <div>
-                      <p>Selected file: {file.name}</p>
+                    {file && <div class="font-medium px-8">
+                      <p className='py-6'>Selected file: {file.name}</p>
                       <button class="inline-flex flex-wrap items-center justify-center px-6 py-2.5 border hover:border-neutral-200 rounded-lg bg-purple-200 text-lg font-bold" onClick={fileUpload}>
                         <span class="font-medium">Add the Asset</span>
                       </button>
