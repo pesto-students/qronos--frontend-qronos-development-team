@@ -1,9 +1,9 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 import Header from './Header'
 import CalltoAction from './CalltoAction'
 import Footer from './Footer'
-import gradientbg from './svgs/gradient.svg'
+import gradientbg from './svgs/dashboard_bg.svg'
 import testimonialbg from './svgs/Testimonial.svg'
 import testimonial2bg from './svgs/howitwork.svg'
 import Seo from '../Shared/Seo'
@@ -11,7 +11,7 @@ const Home = () => {
   const bg_gradient = {
     backgroundImage: `url(${gradientbg})`,
     backgroundSize: 'cover',
-    backgroundRepeat: 'repeat',
+
 
 
   };
@@ -32,20 +32,20 @@ const Home = () => {
     <div>
       <Header />
       <Seo
-        title='QRONOS | The Ultimate Webinar Tool'
-        description='QRONOS | The Ultimate Webinar Tool'
+        title='QRONOS | The Ultimate CMS Tool'
+        description='QRONOS | The Ultimate CMS Tool'
       />
-      {/* Hero section*/}
+      {/* Hero section
 
       <section style={bg_gradient} class="relative overflow-hidden">
-
         <div class="relative z-10  pt-16">
           <div class="container px-4 mx-auto">
             <div class="text-center">
               <p class="mb-5 text-sm text-indigo-600 font-semibold uppercase tracking-px">👋 Meet new Flaro</p>
-              <h1 class="mb-9 text-6xl md:text-8xl xl:text-10xl font-bold font-heading tracking-px-n leading-none">The Ultimate Webinar Tool</h1>
-              <div class="mb-7 md:inline-block">
-                <button class="py-4 px-6 w-full text-white font-semibold border border-indigo-700 rounded-xl focus:ring focus:ring-indigo-300 bg-indigo-600 hover:bg-indigo-700 transition ease-in-out duration-200" type="button">Start 14 Days Free Trial</button>
+              <h1 class="mb-9 text-6xl md:text-8xl xl:text-10xl font-bold font-heading tracking-px-n leading-none">Managing Content Made</h1>
+              <div class=" inline-block">
+                <button class="py-4 px-6 w-full text-white font-semibold border border-indigo-700 rounded-xl focus:ring focus:ring-indigo-300 bg-indigo-600 hover:bg-indigo-700 transition ease-in-out duration-200" type="button">Get Started</button>
+                <button class="py-4 px-6 w-full text-white font-semibold border border-indigo-700 rounded-xl focus:ring focus:ring-indigo-300 bg-indigo-600 hover:bg-indigo-700 transition ease-in-out duration-200" type="button">Learn More</button>
               </div>
               <div class="mb-16 block">
                 <div class="inline-block text-black hover:text-gray-800" href="#">
@@ -63,12 +63,53 @@ const Home = () => {
               </div>
               <div class="relative max-w-max mx-auto">
                 <img class="mx-auto transform hover:scale-105 transition ease-in-out duration-1000" src="https://static.shuffle.dev/uploads/files/aa/aa76bc6a36158b7ac4204a7b269a276536be45f7/hero-image.png" alt="" />
-
               </div>
             </div>
           </div>
         </div>
       </section>
+   */ }
+
+
+
+      <section>
+        <div style={bg_gradient} class="container px-4 mx-auto">
+          <div class="relative pt-12 md:pt-16 pb-32 lg:pb-48 mb-48 lg:mb-64">
+            <div class="max-w-2xl mb-16 mx-auto text-center">
+              <h1 class="mb-2 text-6xl lg:text-7xl text-black font-bold font-heading">Managing Content Made</h1>
+              <h2 class="text-6xl font-semibold bg-gradient-to-r from-red-500 via-pink-600 to-blue-600 bg-clip-text text-transparent">Easier,Faster,Safer</h2>
+              <p class="mb-8 text-lg text-black-500">Qronos  is a user-friendly content management website that helps you to create, organize and publish content seamlessly. With Qronos, you can streamline your content creation process.</p>
+              <div>
+                <Link to="/" class="inline-block w-full lg:w-auto py-3 px-6 mb-3 lg:mb-0 lg:mr-3 bg-black hover:bg-gray-200 text-white font-semibold border border-white rounded transition duration-200" >Get Started</Link>
+                <Link to="/about" class="inline-block w-full lg:w-auto py-3 px-6 mb-3 lg:mb-0 lg:mr-3 bg-white hover:bg-gray-200 text-black font-semibold border border-white rounded-xl transition duration-200" > Learn More</Link>
+              </div>
+            </div>
+            <div class="relative max-w-3xl mx-auto">
+              <img class="absolute top-0 left-0 mx-auto w-full rounded-xl transform hover:scale-110 transition ease-out duration-500" src="gradia-assets/images/hero/dashboard.png" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="hidden navbar-menu fixed top-0 left-0 bottom-0 w-5/6 max-w-sm z-50">
+          <div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
+        </div>
+      </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       {/* Features section*/}
       <section class="relative pt-24">
         <div class="container mx-auto px-4 mb-12">
@@ -125,12 +166,12 @@ const Home = () => {
           <div class="w-full md:w-1/2 p-8">
             <img class="mx-auto transform hover:-translate-y-4 transition ease-in-out duration-1000" src="https://static.shuffle.dev/uploads/files/5f/5fa2a707d47f62fbb2f018dac31db7f8d12fbf5f/Other-01.png" alt="" /></div>
           <div class="w-full md:w-1/2 p-8">
-            <h2 class="mb-20 text-6xl md:text-7xl font-bold font-heading tracking-px-n leading-tight md:max-w-lg">How Flaro helps you to launch your business in no time and grow.</h2>
+            <h2 class="mb-20 text-6xl md:text-7xl font-bold font-heading tracking-px-n leading-tight md:max-w-lg">Effortlessly create content structures that flex to your needs.</h2>
             <div class="flex flex-wrap -m-1.5">
               <div class="w-full p-1.5">
                 <div class="flex flex-wrap -m-6">
                   <div class="w-auto p-6">
-                    <p class="mb-4 text-base" contenteditable="true">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea sit eaque totam aliquid veritatis assumenda temporibus harum unde!</p>
+                    <p class="mb-4 text-base" >Once you have created your content architecture, you can start telling engaging stories.Allow cross-functional teams to deliver content faster no matter yourindustries,usecases,locations,devices, and channels.</p>
 
                   </div>
 
@@ -148,12 +189,12 @@ const Home = () => {
         <div class="flex flex-wrap lg:items-center">
 
           <div class="w-full md:w-1/2 p-8">
-            <h2 class="mb-20 text-6xl md:text-7xl font-bold font-heading tracking-px-n leading-tight md:max-w-lg">How Flaro helps you to launch your business in no time and grow.</h2>
+            <h2 class="mb-20 text-6xl md:text-7xl font-bold font-heading tracking-px-n leading-tight md:max-w-lg">Seamlessly write, edit and manage any content types.</h2>
             <div class="flex flex-wrap -m-1.5">
               <div class="w-full p-1.5">
                 <div class="flex flex-wrap -m-6">
                   <div class="w-auto p-6">
-                    <p class="mb-4 text-base" contenteditable="true">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea sit eaque totam aliquid veritatis assumenda temporibus harum unde!</p>
+                    <p class="mb-4 text-base" >Once you have created your content architecture, you can start telling engaging stories.Allow cross-functional teams to deliver content faster no matter yourindustries,usecases,locations,devices, and channels.</p>
 
                   </div>
 
@@ -173,12 +214,12 @@ const Home = () => {
           <div class="w-full md:w-1/2 p-8">
             <img class="mx-auto transform hover:-translate-y-4 transition ease-in-out duration-1000" src="gradia-assets/images/how-it-works/03.png" alt="" /></div>
           <div class="w-full md:w-1/2 p-8">
-            <h2 class="mb-20 text-6xl md:text-7xl font-bold font-heading tracking-px-n leading-tight md:max-w-lg">How Flaro helps you to launch your business in no time and grow.</h2>
+            <h2 class="mb-20 text-6xl md:text-7xl font-bold font-heading tracking-px-n leading-tight md:max-w-lg">Easily build apps without the distraction of CMS complexities.</h2>
             <div class="flex flex-wrap -m-1.5">
               <div class="w-full p-1.5">
                 <div class="flex flex-wrap -m-6">
                   <div class="w-auto p-6">
-                    <p class="mb-4 text-base" contenteditable="true">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea sit eaque totam aliquid veritatis assumenda temporibus harum unde!</p>
+                    <p class="mb-4 text-base" contenteditable="true">Focus your talent on what matters. You can integrate individual best-in-class services by third-party vendors and connect any framework of your choice.</p>
 
                   </div>
 
@@ -196,12 +237,12 @@ const Home = () => {
         <div class="flex flex-wrap lg:items-center">
 
           <div class="w-full md:w-1/2 p-8">
-            <h2 class="mb-20 text-6xl md:text-7xl font-bold font-heading tracking-px-n leading-tight md:max-w-lg">How Flaro helps you to launch your business in no time and grow.</h2>
+            <h2 class="mb-20 text-6xl md:text-7xl font-bold font-heading tracking-px-n leading-tight md:max-w-lg">Consume API from any client using REST </h2>
             <div class="flex flex-wrap -m-1.5">
               <div class="w-full p-1.5">
                 <div class="flex flex-wrap -m-6">
                   <div class="w-auto p-6">
-                    <p class="mb-4 text-base" contenteditable="true">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea sit eaque totam aliquid veritatis assumenda temporibus harum unde!</p>
+                    <p class="mb-4 text-base">You can use a standard RESTful API  to query your content.</p>
 
                   </div>
 

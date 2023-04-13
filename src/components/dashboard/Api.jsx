@@ -1,10 +1,8 @@
 import React, { useContext } from 'react'
 import './dashboard.css'
 import { useState } from 'react'
-
 import Sidebar from './components/Sidebar'
 import { DatabaseContext } from '../../context/context'
-
 import Copy_Icon from '../../images/copy.png'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router'
@@ -50,74 +48,7 @@ const Api = () => {
             <section class="py-4 overflow-hidden"><div class="container px-4 mx-auto">
               <div class="pt-5 bg-neutral-50 border border-neutral-100 rounded-xl">
                 <div class="px-6">
-                  <h3 class="font-heading mb-1.5 pt-4 font-semibold text-lg text-4xl">How to use API</h3>
-                  <p class="font-heading mb-1.5 py-4 font-semibold text-gray-400 text-md border-b">In Header Pass: 'Authorization': 'Bearer &#10100;Access Token&#10101;'</p>
-                  <div class="w-full overflow-x-auto">
-                    <table class="w-full min-w-max">
-                      <thead><tr class="text-left">
-                        <th class="p-0 border-b border-neutral-100">
-                          <div class="pb-3.5"><a class="text-sm text-gray-400 font-medium uppercase" href="#">Type</a></div>
-                        </th>
-                        <th class="p-0 border-b border-neutral-100">
-                          <div class="pb-3.5"><a class="text-sm text-gray-400 font-medium" href="#">API Call Method</a></div>
-                        </th>
 
-                        <th class="p-0 border-b border-neutral-100">
-                          <div class="pb-3.5"><a class="text-sm text-gray-400 font-medium" href="#"></a></div>
-                        </th>
-                        <th class="p-0 border-b border-neutral-100">
-                          <div class="pb-3.5"></div>
-                        </th>
-                      </tr></thead>
-                      <tbody>
-                        <tr>
-                          <td class="py-3 pr-4 border-b border-neutral-100">
-                            <Table_Row class="text-sm">
-                              Get All Entries
-                            </Table_Row>
-                          </td>
-                          <td class="py-3 pr-4 border-b border-neutral-100">
-                            <Table_Row class="text-sm">
-                            https://backend-qronos.onrender.com/api/v1/all?database_id=&#10100;databaseID&#10101;
-                            </Table_Row>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="py-3 pr-4 border-b border-neutral-100">
-                            <Table_Row class="text-sm">
-                              Get All Product Entries
-                            </Table_Row>
-                          </td>
-                          <td class="py-3 pr-4 border-b border-neutral-100">
-                            <Table_Row class="text-sm">
-                            https://backend-qronos.onrender.com/api/v1/product?database_id=&#10100;databaseID&#10101;
-                            </Table_Row>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="py-3 pr-4 border-b border-neutral-100">
-                            <Table_Row class="text-sm">
-                              Get All Blog Entries
-                            </Table_Row>
-                          </td>
-                          <td class="py-3 pr-4 border-b border-neutral-100">
-                            <Table_Row class="text-sm">
-                            https://backend-qronos.onrender.com/api/v1/blog?database_id=&#10100;databaseID&#10101;
-                            </Table_Row>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-            </section>
-
-            <section class="py-4 overflow-hidden"><div class="container px-4 mx-auto">
-              <div class="pt-5 bg-neutral-50 border border-neutral-100 rounded-xl">
-                <div class="px-6">
-                <h3 class="font-heading mb-1.5 py-4 font-semibold text-lg text-4xl border-b">Private Keys</h3>
                   <div class="w-full overflow-x-auto">
                     <table class="w-full min-w-max">
                       <thead><tr class="text-left">
@@ -127,11 +58,8 @@ const Api = () => {
                         <th class="p-0 border-b border-neutral-100">
                           <div class="pb-3.5"><a class="text-sm text-gray-400 font-medium" href="#">Access Token</a></div>
                         </th>
-
-
-
                         <th class="p-0 border-b border-neutral-100">
-                          <div class="pb-3.5"><a class="text-sm text-gray-400 font-medium" href="#"></a></div>
+                          <div class="pb-3.5"></div>
                         </th>
                         <th class="p-0 border-b border-neutral-100">
                           <div class="pb-3.5"></div>
@@ -170,12 +98,9 @@ const Api = () => {
           </div>
         </section>
       </div>
-
     </body>
-
   )
 }
-
 const Table_Row = styled.div`
   display: flex;
   align-items: center;

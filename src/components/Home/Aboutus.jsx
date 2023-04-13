@@ -53,17 +53,30 @@ const Aboutus = () => {
                             </div>
                         </div>
                         <div class="w-full md:w-1/2 p-6">
-                            <div class="flex flex-wrap justify-center -m-6">
+                            <div class="flex flex-inline justify-center -m-6">
                                 <div class="w-full flex lg:w-auto p-6">
                                     <div class="max-w-max mx-auto">
                                         <div class="mb-5 bg-gradient-orange">
                                             <img src="gradia-assets/images/teams/avatar-bg.png" alt="" />
                                         </div>
-                                        <h3 class="mb-1 font-heading font-bold text-xl text-gray-900">Albert Flores</h3>
-                                        <p class="text-xs text-gray-600">Digital Marketer @ Grower.io</p>
+                                        <h3 class="mb-1 font-heading font-bold text-xl text-gray-900">Ashwanth Kumar</h3>
+                                        <p class="text-xs text-gray-600">Full Stack Developer</p>
                                     </div>
-                                </div>
 
+                                    <div class="max-w-max mx-auto">
+                                        <div class="mb-5 bg-gradient-orange">
+                                            <img src="gradia-assets/images/teams/avatar-bg2.png" alt="" />
+                                        </div>
+                                        <h3 class="mb-1 font-heading font-bold text-xl text-gray-900">Varanshu</h3>
+                                        <p class="text-xs text-gray-600">Full Stack Developer</p>
+                                    </div>
+
+
+
+
+
+
+                                </div>
 
                             </div>
                         </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 const Footer = () => {
     return (
 
@@ -12,10 +12,8 @@ const Footer = () => {
                         <div class="h-full">
                             <h3 class="mb-9 font-heading font-semibold text-xs text-gray-500 uppercase tracking-px">Company</h3>
                             <ul>
-                                <li class="mb-4"><a class="font-heading font-medium text-base text-gray-900 hover:text-gray-700" href="#">Features</a></li>
+                                <li class="mb-4"><Link to="/about"><a class="font-heading font-medium text-base text-gray-900 hover:text-gray-700">Aboutus</a></Link></li>
                                 <li class="mb-4"><a class="font-heading font-medium text-base text-gray-900 hover:text-gray-700" href="#">Pricing</a></li>
-                                <li class="mb-4"><a class="font-heading font-medium text-base text-gray-900 hover:text-gray-700" href="#">Affiliate Program</a></li>
-                                <li><a class="font-heading font-medium text-base text-gray-900 hover:text-gray-700" href="#">Press Kit</a></li>
                             </ul>
                         </div>
                     </div>

@@ -139,6 +139,15 @@ const Contentview = () => {
                           </svg>
                         </div>
                       </div>
+
+
+
+
+
+
+
+
+
                     </div>
                     <div class="w-auto"></div>
                   </div>
@@ -207,7 +216,12 @@ const Contentview = () => {
                           })
                           : <div class="w-full p-2">
                             <div class="flex flex-wrap md:justify-evenly">
-                              No Entries found
+                              <div class="w-auto p-2">
+                                <button class="inline-flex flex-wrap items-center justify-center px-5 py-2.5 w-full font-medium text-sm text-center bg-black text-white rounded-xl" onClick={() => navigate('/content/product/')}>+ Add Product Entry</button>
+                              </div>
+                              <div class="w-auto p-2">
+                                <button class="inline-flex flex-wrap items-center justify-center px-5 py-2.5 w-full font-medium text-sm text-center bg-black text-white rounded-xl" onClick={() => navigate('/content/blog/')}>+ Add Blog Entry</button>
+                              </div>
                               <div class="w-auto"></div>
                             </div>
                           </div>
