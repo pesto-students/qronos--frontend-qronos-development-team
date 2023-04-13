@@ -1,10 +1,8 @@
 import React, { useContext, useEffect } from 'react'
 import './dashboard.css'
 import { useState } from 'react'
-
 import Sidebar from './components/Sidebar'
 import { DatabaseContext } from '../../context/context'
-
 import Copy_Icon from '../../images/copy.png'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router'
@@ -131,11 +129,8 @@ const Api = () => {
                         <th class="p-0 border-b border-neutral-100">
                           <div class="pb-3.5"><a class="text-sm text-gray-400 font-medium" href="#">Access Token</a></div>
                         </th>
-
-
-
                         <th class="p-0 border-b border-neutral-100">
-                          <div class="pb-3.5"><a class="text-sm text-gray-400 font-medium" href="#"></a></div>
+                          <div class="pb-3.5"></div>
                         </th>
                         <th class="p-0 border-b border-neutral-100">
                           <div class="pb-3.5"></div>
@@ -174,12 +169,9 @@ const Api = () => {
           </div>
         </section>
       </div>
-
     </body>
-
   )
 }
-
 const Table_Row = styled.div`
   display: flex;
   align-items: center;

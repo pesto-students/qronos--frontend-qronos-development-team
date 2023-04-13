@@ -7,6 +7,7 @@ import Dashboard_logo from '../../../images/dashboard.png'
 import Media_library_logo from '../../../images/media-library.png'
 import Content_logo from '../../../images/content.png'
 import Api_view_logo from '../../../images/api-view.png'
+import cog from '../../../images/icon.png'
 
 import { useAuth0 } from "@auth0/auth0-react";
 import { LocalStorage } from '../../../utils/LocalStorage'
@@ -42,7 +43,7 @@ const Sidebar = () => {
                         <Icon src={Content_logo} alt="" />
                     </Link>
                     <Link to="/api">
-                        <Icon src={Api_view_logo} alt="" />
+                        <Icon src={cog} alt="" />
                     </Link>
                 </IconsContainer>
                 <Empty>&nbsp;</Empty>
@@ -122,6 +123,8 @@ const IconsContainer = styled.div`
 `
 
 const Icon = styled.img`
+padding:10px;
+margin:auto;
 `
 
 export default Sidebar

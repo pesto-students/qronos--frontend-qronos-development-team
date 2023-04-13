@@ -146,6 +146,15 @@ const Contentview = () => {
                           </svg>
                         </div>
                       </div>
+
+
+
+
+
+
+
+
+
                     </div>
                     <div class="w-auto"></div>
                   </div>
@@ -214,7 +223,7 @@ const Contentview = () => {
                           })
                           : <div class="w-full p-2">
                             <div class="flex flex-wrap md:justify-evenly">
-                              No Entries found
+                            No Entries found
                               <div class="w-auto"></div>
                             </div>
                           </div>
@@ -230,7 +239,7 @@ const Contentview = () => {
           </div>
         </section>
 
-        <Nocontentview />
+        {/* <Nocontentview /> */}
       </div>
     </div>
 
