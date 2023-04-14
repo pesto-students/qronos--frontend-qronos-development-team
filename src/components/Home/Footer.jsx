@@ -44,8 +44,8 @@ const Footer = () => {
                                 <img class="mb-16" src="gradia-assets/images/Logomark.png" alt="" />
                             </div>
                             <div>
-                                <p class="mb-4 font-heading font-medium text-base">The boldest SaaS kit in the market.</p>
-                                <p class="text-gray-600 text-sm">&copy; Copyright 2022. All Rights Reserved by Gradia.</p>
+                                <p class="mb-4 font-heading font-medium text-base">Making Managing Content Easier,Simpler,Faster.</p>
+                                <p class="text-gray-600 text-sm">&copy; Copyright 2022. All Rights Reserved by Qronos.</p>
                             </div>
                         </div>
                     </div>

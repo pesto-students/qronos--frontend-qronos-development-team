@@ -41,7 +41,11 @@ const Header = () => {
                     </ul>
                     {
                         (isAuthenticated || LocalStorage.get(LocalStorageKeys.USER_DETAILS)) ?
-                            (<button class="hidden bg-black text-white font-bold text-sm lg:block px-6 py-3" onClick={() => logoutFun()}>Logout</button>) :
+                            (<div>
+                                <button class="hidden bg-black text-white font-bold text-sm lg:block px-6 py-3" onClick={() => logoutFun()}>Logout</button>
+                                <Link to="/dashboard"> <button class="hidden bg-black text-white font-bold text-sm lg:block px-6 py-3">Dashboard</button></Link>
+                            </div>
+                            ) :
                             (<button class="hidden bg-black text-white font-bold text-sm lg:block px-6 py-3" onClick={() => loginWithRedirect()}>Login</button>)
                     }
                     <button class="hidden lg:block px-6 py-3 text-sm text-white hover:text-gray-700 font-bold border border-gray-100 rounded bg-black" contenteditable="false">Sign up</button>

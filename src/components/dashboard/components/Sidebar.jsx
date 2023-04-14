@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import Logo from '../../../images/mobile_logo.png'
+import * as Sentry from '@sentry/react'
 import Dashboard_logo from '../../../images/dashboard.png'
 import Media_library_logo from '../../../images/media-library.png'
 import Content_logo from '../../../images/content.png'
@@ -25,6 +26,15 @@ const Sidebar = () => {
             })
     }
 
+    useEffect(() => {
+        Sentry.addBreadcrumb({
+            category: 'navigation',
+            message: 'Link loaded',
+            data: {
+                link: window.location.pathname,
+            },
+        });
+    }, []);
 
     return (
         <Wrapper>
@@ -126,5 +136,6 @@ const Icon = styled.img`
 padding:10px;
 margin:auto;
 `
+
 
 export default Sidebar
