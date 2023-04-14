@@ -1,7 +1,9 @@
 import React, { useContext } from 'react'
 import './dashboard.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Sidebar from './components/Sidebar'
+import * as Sentry from '@sentry/react'
+import { Severity } from '@sentry/types';
 import axios from 'axios'
 import { CounterContext, DatabaseContext, s3, UserContext } from '../../context/context'
 import { useNavigate } from 'react-router-dom'
@@ -10,7 +12,12 @@ import { useCreateAnObject } from '../../hooks/function/useCreateAnObject'
 import Seo from '../Shared/Seo'
 import { Link } from 'react-router-dom'
 const Dashboard = () => {
-
+  useEffect(() => {
+    Sentry.configureScope(scope => {
+      scope.setTag('pageLoad', 'Dashboard');
+    });
+    Sentry.captureMessage('Dashboard loaded successfully');
+  }, []);
   const [open, setopen] = useState(true)
   const [databaseName, setDatabaseName] = useState('')
   const [created, setCreated] = useState(false)
@@ -76,7 +83,7 @@ const Dashboard = () => {
                       <h2 class="mt-[-180px] mb-4 text-4xl lg:text-5xl font-bold font-heading">Dive into the Innovative Potential of Your Unique CMS Dashboard!</h2>
                       <p class="mb-6 text-lg text-gray-500 leading-loose">The CMS Dashboard is your one-stop destination for managing and monitoring your website content. It provides an easy-to-use interface with tools to help you quickly and accurately create, edit, publish, and analyze content. Get started now and take control of your online presence!</p>
                       <div class="mb-12">
-                        <Link to="/content"><a class="inline-block w-full sm:w-auto px-6 py-2 text-sm text-white font-bold leading-loose bg-black hover:bg-gray-600 rounded transition duration-200" >Get Started</a>
+                        <Link to="/content"><button class="inline-block w-full sm:w-auto px-6 py-2 text-sm text-white font-bold leading-loose bg-black hover:bg-gray-600 rounded transition duration-200" >Get Started</button>
                         </Link>  </div>
                     </div>
                   </div>
@@ -107,7 +114,7 @@ const Dashboard = () => {
                               <div class="w-full sm:flex-1 p-1">
                                 <input class="px-4 py-3.5 w-full text-sm text-neutral-400 hover:bg-gray-50 outline-none placeholder-neutral-400 border focus:border-neutral-600 border-neutral-200 rounded-lg" id="stepsInput4-1" type="text" placeholder="Type a name" onInput={e => setDatabaseName(e.target.value)} />
                               </div>
-                              <div class="w-full sm:w-auto p-1"><a class="inline-flex flex-wrap items-center justify-center px-5 py-3.5 w-full text-sm text-neutral-50 hover:text-neutral-100 font-medium text-center bg-neutral-600 hover:bg-opacity-95 rounded-lg focus:ring-4 focus:ring-neutral-400" onClick={e => createDatabase()}>Create</a></div>
+                              <div class="w-full sm:w-auto p-1"><button class="inline-flex flex-wrap items-center justify-center px-5 py-3.5 w-full text-sm text-neutral-50 hover:text-neutral-100 font-medium text-center bg-neutral-600 hover:bg-opacity-95 rounded-lg focus:ring-4 focus:ring-neutral-400" onClick={e => createDatabase()}>Create</button></div>
                             </>
                         }
                       </div>

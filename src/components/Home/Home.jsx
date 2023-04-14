@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Header from './Header'
 import CalltoAction from './CalltoAction'
+import * as Sentry from '@sentry/react'
 import Footer from './Footer'
 import gradientbg from './svgs/dashboard_bg.svg'
 import testimonialbg from './svgs/Testimonial.svg'
 import testimonial2bg from './svgs/howitwork.svg'
 import Seo from '../Shared/Seo'
 const Home = () => {
+  useEffect(() => {
+    Sentry.configureScope(scope => {
+      scope.setTag('Welcome to Qronos', 'Homepage');
+    });
+    Sentry.captureMessage('Homepage loaded successfully');
+  }, []);
   const bg_gradient = {
     backgroundImage: `url(${gradientbg})`,
     backgroundSize: 'cover',
@@ -35,42 +42,6 @@ const Home = () => {
         title='QRONOS | The Ultimate CMS Tool'
         description='QRONOS | The Ultimate CMS Tool'
       />
-      {/* Hero section
-
-      <section style={bg_gradient} class="relative overflow-hidden">
-        <div class="relative z-10  pt-16">
-          <div class="container px-4 mx-auto">
-            <div class="text-center">
-              <p class="mb-5 text-sm text-indigo-600 font-semibold uppercase tracking-px">👋 Meet new Flaro</p>
-              <h1 class="mb-9 text-6xl md:text-8xl xl:text-10xl font-bold font-heading tracking-px-n leading-none">Managing Content Made</h1>
-              <div class=" inline-block">
-                <button class="py-4 px-6 w-full text-white font-semibold border border-indigo-700 rounded-xl focus:ring focus:ring-indigo-300 bg-indigo-600 hover:bg-indigo-700 transition ease-in-out duration-200" type="button">Get Started</button>
-                <button class="py-4 px-6 w-full text-white font-semibold border border-indigo-700 rounded-xl focus:ring focus:ring-indigo-300 bg-indigo-600 hover:bg-indigo-700 transition ease-in-out duration-200" type="button">Learn More</button>
-              </div>
-              <div class="mb-16 block">
-                <div class="inline-block text-black hover:text-gray-800" href="#">
-                  <div class="flex flex-wrap items-center -m-1.5">
-                    <div class="w-auto p-1.5">
-                      <svg width="11" height="13" viewBox="0 0 11 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4.18003 11.4261C2.8586 12.3918 1 11.448 1 9.81135V3.43865C1 1.80198 2.8586 0.858209 4.18003 1.82387L8.5403 5.01022C9.63359 5.80916 9.63359 7.44084 8.5403 8.23978L4.18003 11.4261Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
-                      </svg>
-                    </div>
-                    <div class="w-auto p-1.5">
-                      <p class="font-medium">See how the magic happens</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="relative max-w-max mx-auto">
-                <img class="mx-auto transform hover:scale-105 transition ease-in-out duration-1000" src="https://static.shuffle.dev/uploads/files/aa/aa76bc6a36158b7ac4204a7b269a276536be45f7/hero-image.png" alt="" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-   */ }
-
-
 
       <section>
         <div style={bg_gradient} class="container px-4 mx-auto">
@@ -93,20 +64,6 @@ const Home = () => {
           <div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
         </div>
       </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

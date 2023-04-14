@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+# QRONOS 
+### Managing Content Made Easier,Faster,Simpler
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Qronos is a content management system (CMS) platform built around ReactJS. The platform provides users with the ability to create, manage, and publish their own content. The platform is built with a focus on simplicity and ease of use. This README file provides instructions on how to install the dependencies and provides an overview of the features of the platform..
 
-## Available Scripts
+- ✨Magic ✨
 
-In the project directory, you can run:
+## Installation
+To install the dependencies for the Qronos CMS platform, please follow these steps:
+- Clone the repository from Github.
+- Navigate to the project directory in the terminal.
+- Run npm install to install all the required dependencies.
+```sh
+cd qronos
+npm install
+npm run start
+```
+- Run npm start to start the development server.
+```sh
+localhost:3000
+```
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tech
 
-### `npm test`
+Qronos uses a number of open source projects to work properly:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [ReactJS] - ReactJS is an open-source JavaScript library that is used for building user interfaces. It is maintained by Facebook and a community of individual developers and companies.
+- [Tailwind Css] - Tailwind CSS is a utility-first CSS framework that provides a set of pre-designed styles and classes to quickly build responsive and customizable user interfaces.
+- [NodeJs] - Node.js is an open-source, cross-platform JavaScript runtime environment that allows developers to build fast, scalable, and efficient server-side applications using JavaScript.
+- [Express Js] -  ExpressJS is a fast and minimalist web framework for NodeJS, providing a robust set of features for building web applications and APIs.
+- [Mongodb] -MongoDB is a popular NoSQL document-oriented database that allows for flexible and scalable storage and querying of data.
 
-### `npm run build`
+# Features
+##### User Authentication
+Qronos uses Auth0 for user authentication. Users can sign up and log in to the platform using their Auth0 account.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+##### Dashboard
+The platform provides a dashboard that allows users to create a database for their project. This database can be used to store content for the project.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+##### Create Content
+Users can create products or blog entries using the platform. They can also perform CRUD operations on those entries.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+##### Accessing Content
+For the content that users create, they can navigate to the settings option to obtain information on the API key and database ID to access the content and fetch the data.
 
-### `npm run eject`
+# Contribute
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+If you would like to contribute to the Qronos CMS platform, please follow these steps:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Fork the repository.
+- Clone the forked repository to your local machine.
+- Create a new branch for your changes.
+- Make your changes to the code.
+- Push your changes to your forked repository.
+- Create a pull request to merge your changes into the main repository.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Check PRD
+live version and motivation behind development of the Qronos
+[Qronos-prd]
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## License
 
-## Learn More
+MIT
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**Free Software, Hell Yeah!**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 
-### Code Splitting
+   [ReactJS]: <https://reactjs.org/>
+   [Express Js]: <https://expressjs.com/>
+   [TailWind Css]: <https://tailwindcss.com/>
+   [Mongodb]: <https://www.mongodb.com/>
+   [NodeJs]: <https://nodejs.org/>
+   [Qronos-Prd]:<https://qronos.gitbook.io/>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

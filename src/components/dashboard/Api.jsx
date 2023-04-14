@@ -1,15 +1,21 @@
 import React, { useContext } from 'react'
 import './dashboard.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Sidebar from './components/Sidebar'
 import { DatabaseContext } from '../../context/context'
 import Copy_Icon from '../../images/copy.png'
+import * as Sentry from '@sentry/react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router'
 
 const Api = () => {
   const [open, setopen] = useState(true)
-
+  useEffect(() => {
+    Sentry.configureScope(scope => {
+      scope.setTag('pageapi', 'Api_page');
+    });
+    Sentry.captureMessage('Api page was loaded successfully');
+  }, []);
   const { database } = useContext(DatabaseContext)
 
   const copyItem = async (value) => {
@@ -34,12 +40,7 @@ const Api = () => {
                   <div class="w-full md:w-1/2 p-2">
                     <h3 class="font-heading mb-1.5 font-semibold text-lg text-4xl">API Detail Page</h3>
                   </div>
-                  {/* <div class="w-full md:w-1/2 p-2">
-                    <div class="flex flex-wrap md:justify-end">
-                      <div class="w-auto"><a class="inline-flex flex-wrap items-center justify-center px-5 py-2.5 w-full font-medium text-sm text-center text-neutral-50 hover:text-neutral-100 bg-neutral-600 hover:bg-opacity-95 rounded-lg focus:ring-4 focus:ring-neutral-400" href="#">+ Add Entry</a></div>
-                      <div class="w-auto"></div>
-                    </div>
-                  </div> */}
+
                 </div>
               </div>
             </div>
@@ -53,10 +54,10 @@ const Api = () => {
                     <table class="w-full min-w-max">
                       <thead><tr class="text-left">
                         <th class="p-0 border-b border-neutral-100">
-                          <div class="pb-3.5"><a class="text-sm text-gray-400 font-medium uppercase" href="#">Database ID</a></div>
+                          <div class="pb-3.5"><p class="text-sm text-gray-400 font-medium uppercase" >Database ID</p></div>
                         </th>
                         <th class="p-0 border-b border-neutral-100">
-                          <div class="pb-3.5"><a class="text-sm text-gray-400 font-medium" href="#">Access Token</a></div>
+                          <div class="pb-3.5"><p class="text-sm text-gray-400 font-medium">Access Token</p></div>
                         </th>
                         <th class="p-0 border-b border-neutral-100">
                           <div class="pb-3.5"></div>
