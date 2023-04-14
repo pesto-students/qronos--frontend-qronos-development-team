@@ -48,9 +48,9 @@ const Dashboard = () => {
       })
   }
 
-  useEffect(() => {
-    if (!database) navigate('/')
-  }, [database])
+  // useEffect(() => {
+  //   if (!database) navigate('/')
+  // }, [database])
 
 
   return (
