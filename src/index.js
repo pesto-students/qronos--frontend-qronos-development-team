@@ -4,10 +4,21 @@ import App from './App';
 import { Auth0Provider } from "@auth0/auth0-react";
 import { CounterProvider, DatabaseProvider, UserProvider } from './context/context';
 import * as Sentry from '@sentry/react'
+import { Navigate, useLocation } from 'react-router-dom';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 Sentry.init({
   dsn: "https://37ec3e7e72e44e77bde6de11740e8ffb@o4505013082980352.ingest.sentry.io/4505013091565568",
-  integrations: [new Sentry.BrowserTracing(), new Sentry.Replay()],
+
+  integrations: [
+    new Sentry.BrowserTracing({
+      routingInstrumentation: Sentry.reactRouterV6Instrumentation(
+        React.useEffect,
+        useLocation,
+        Navigate
+      ),
+    }),
+    new Sentry.Replay()
+  ],
   // Performance Monitoring
   tracesSampleRate: 1.0, // Capture 100% of the transactions, reduce in production!
   // Session Replay

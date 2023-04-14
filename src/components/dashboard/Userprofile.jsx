@@ -1,23 +1,24 @@
 import React from 'react'
 import Seo from '../Shared/Seo'
 import Sidebar from './components/Sidebar'
+import { Link } from 'react-router-dom'
 const Userprofile = () => {
   return (
     <body class="antialiased bg-body text-body font-body">
       <div class="">
         <Seo
-          title='Profile | The Ultimate Webinar Tool | QRONOS'
-          description='Edit Profile | The Ultimate Webinar Tool'
+          title='Profile | The Ultimate CMS Tool | QRONOS'
+          description='Edit Profile | The Ultimate CMS Tool'
         />
         <section class="relative">
           <Sidebar />
           <div class="mx-auto xl:ml-16 xl:pl-4">
             <section class="py-4 bg-white overflow-hidden">
               <div class="container px-4 mx-auto">
-                <a class="flex flex-wrap items-center mb-2 text-neutral-500 hover:text-neutral-600" href="#">
+                <Link to="/dashboard" class="flex flex-wrap items-center mb-2 text-neutral-500 hover:text-neutral-600">
                   <svg class="mr-3.5" width="14" height="12" viewbox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5.13634 11.197C5.42923 11.4899 5.9041 11.4899 6.197 11.197C6.48989 10.9041 6.48989 10.4292 6.197 10.1363L5.13634 11.197ZM1 6.00001L0.46967 5.46968C0.329018 5.61033 0.25 5.8011 0.25 6.00001C0.25 6.19892 0.329018 6.38969 0.46967 6.53034L1 6.00001ZM6.197 1.86367C6.48989 1.57078 6.48989 1.09591 6.197 0.803013C5.9041 0.51012 5.42923 0.51012 5.13634 0.803013L6.197 1.86367ZM13 6.75001C13.4142 6.75001 13.75 6.41422 13.75 6.00001C13.75 5.5858 13.4142 5.25001 13 5.25001V6.75001ZM6.197 10.1363L1.53033 5.46968L0.46967 6.53034L5.13634 11.197L6.197 10.1363ZM1.53033 6.53034L6.197 1.86367L5.13634 0.803013L0.46967 5.46968L1.53033 6.53034ZM1 6.75001L13 6.75001V5.25001L1 5.25001L1 6.75001Z" fill="currentColor"></path>
-                  </svg><span>Back to Home</span></a>
+                  </svg><span>Back to Home</span></Link>
                 <h1 class="font-heading mb-1 text-2xl font-semibold">User Profile</h1>
               </div>
             </section>

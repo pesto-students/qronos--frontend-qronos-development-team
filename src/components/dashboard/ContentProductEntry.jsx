@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from 'react'
 import Sidebar from './components/Sidebar'
 import axios from 'axios'
 import { DatabaseContext, UserContext } from '../../context/context'
-
+import * as Sentry from '@sentry/react'
 import { useLocation, useNavigate } from "react-router-dom"
 import Seo from '../Shared/Seo'
-
+import { Link } from '@sentry/react'
 const ContentEntry = () => {
 
     let navigate = useNavigate();
@@ -213,4 +213,4 @@ const ContentEntry = () => {
     )
 }
 
-export default ContentEntry
+export default Sentry.withProfiler(ContentEntry)

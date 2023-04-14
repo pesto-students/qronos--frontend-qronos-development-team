@@ -61,8 +61,8 @@ const Dashboard = () => {
 
 
       <Seo
-        title='Dashboard | The Ultimate Webinar Tool | QRONOS'
-        description='Dashboard | The Ultimate Webinar Tool'
+        title='Dashboard | The Ultimate CMS Tool | QRONOS'
+        description='Dashboard | The Ultimate CMS Tool'
       />
 
       <section class="flex">
@@ -181,45 +181,7 @@ const Dashboard = () => {
                     </div>
                   </div>
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <div class="p-6 py-4 bg-white ">
-
                   <div class="flex flex-wrap -m-2.5">
                     <div class="w-full sm:w-1/2 p-3  border rounded-xl">
                       <div class="p-6 bg-white hover:bg-light cursor-pointer">
@@ -234,7 +196,6 @@ const Dashboard = () => {
                         </div>
                       </div>
                     </div>
-
                     <div class="w-full sm:w-1/2 p-3 border  rounded-xl">
                       <div class="p-6 bg-white hover:bg-light  cursor-pointer">
                         <div class="flex flex-wrap -m-2">
@@ -249,8 +210,6 @@ const Dashboard = () => {
                       </div>
                     </div>
                   </div>
-
-
                   <div class="w-full sm:w-1/2 p-2.5 border rounded-xl m-10">
 
                     <div class="p-6 bg-white hover:bg-light  cursor-pointer">
@@ -267,7 +226,6 @@ const Dashboard = () => {
                           <Link to="https://github.com"><p>Github</p></Link>
                         </div>
                       </div>
-
                       <div class="flex flex-wrap justify-center m-2">
                         <div class="inline-block p-2">
                           <img src="gradia-assets/images/Reddit.png" alt="" />
@@ -280,43 +238,7 @@ const Dashboard = () => {
                       </div>
                     </div>
                   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
               </div>
             </section>
           </div>
@@ -327,4 +249,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default Sentry.withProfiler(Dashboard)

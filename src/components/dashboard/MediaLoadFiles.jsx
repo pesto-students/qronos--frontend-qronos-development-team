@@ -1,5 +1,5 @@
 import React from 'react'
-
+import * as Sentry from '@sentry/react';
 const MediaLoadFiles = ({
     allFiles
 }) => {
@@ -46,4 +46,5 @@ const MediaLoadFiles = ({
     )
 }
 
-export default MediaLoadFiles
+//export default MediaLoadFiles
+export default Sentry.withProfiler(MediaLoadFiles, { name: "Qronosmediaupload" });
