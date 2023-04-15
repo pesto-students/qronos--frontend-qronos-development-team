@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import './dashboard.css'
-import { useState, useEffect } from 'react'
+// import { useState, useEffect } from 'react'
 import Sidebar from './components/Sidebar'
 import { DatabaseContext } from '../../context/context'
 import Copy_Icon from '../../images/copy.png'

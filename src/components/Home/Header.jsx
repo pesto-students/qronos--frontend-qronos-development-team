@@ -41,14 +41,14 @@ const Header = () => {
                     </ul>
                     {
                         (isAuthenticated || LocalStorage.get(LocalStorageKeys.USER_DETAILS)) ?
-                            (<div>
-                                <button class="hidden bg-black text-white font-bold text-sm lg:block px-6 py-3" onClick={() => logoutFun()}>Logout</button>
+                            (<div class="flex">
+                                <button class="hidden mr-2 bg-black text-white font-bold text-sm lg:block px-6 py-3" onClick={() => logoutFun()}>Logout</button>
                                 <Link to="/dashboard"> <button class="hidden bg-black text-white font-bold text-sm lg:block px-6 py-3">Dashboard</button></Link>
                             </div>
                             ) :
                             (<button class="hidden bg-black text-white font-bold text-sm lg:block px-6 py-3" onClick={() => loginWithRedirect()}>Login</button>)
                     }
-                    <button class="hidden lg:block px-6 py-3 text-sm text-white hover:text-gray-700 font-bold border border-gray-100 rounded bg-black" contenteditable="false">Sign up</button>
+                    {/* <button class="hidden lg:block px-6 py-3 text-sm text-white hover:text-gray-700 font-bold border border-gray-100 rounded bg-black" contenteditable="false">Sign up</button> */}
                 </div>
                 <div class={`navbar-menu fixed top-0 left-0 bottom-0 w-5/6 max-w-sm z-50 ${open ? "absolute" : "hidden"}`}>
                     <div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
