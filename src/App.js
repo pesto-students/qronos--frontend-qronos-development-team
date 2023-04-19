@@ -24,10 +24,16 @@ import { LocalStorage, LocalStorageKeys } from './utils/LocalStorage';
 
 // import AWS from 'aws-sdk';
 import { useConsistObject, useCreateAnObject } from './hooks';
+import Loading from './components/Loading';
 
 
 function App() {
-    const { isAuthenticated, user, logout } = useAuth0();
+    const {
+        isAuthenticated,
+        user,
+        logout,
+        isLoading
+    } = useAuth0();
     // console.log(user);
 
     // console.log(process.env.REACT_APP_API_URL);
@@ -143,7 +149,16 @@ function App() {
         }
     ])
 
-    return <RouterProvider router={router} />
+    return <div style={{
+        overflow: 'hidden'
+    }}>
+        {
+            isLoading
+                ? <Loading />
+                : null
+        }
+        <RouterProvider router={router} />
+    </div>
 }
 
 export default App;
