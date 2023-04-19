@@ -1,0 +1,59 @@
+import React from 'react'
+import './dashboard.css'
+import { useState } from 'react'
+
+const Sidebar = () => {
+    const [activeComponent, setActiveComponent] = useState('Dashboard');
+    const [open, setopen] = useState(true)
+    const Menus = [
+        {
+            title: "Dashboard", icon: "dashy-assets/images/adjustments.svg"
+        },
+        { title: "API", spacing: true, icon: "dashy-assets/images/cog.svg" },
+        { title: "MediaLibrary", icon: "dashy-assets/images/bell.svg", },
+        { title: "User", icon: "dashy-assets/images/bell.svg" },
+        { title: "Medialibrary" },
+        { title: "Documentation", icon: "dashy-assets/images/question-mark-circle.svg" },
+        {
+            title: "Settings",
+            spacing: true,
+            submenuitems: [
+                { title: "api" },
+                { title: "users" }
+            ],
+            icon: "dashy-assets/images/user-circle.svg"
+        }
+
+    ]
+
+    const handleTitleClick = (title) => {
+        setActiveComponent(title);
+    };
+
+
+    return (
+        <div class={` bg-gray-200 p-3 ${open ? "w-25" : "w-15"} rounded-lg duration-30 h-screen fixed  `}>
+
+
+
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class={`bg-red-100 rounded-full   top-9  ${!open && "rotate-180"}  border-black-500 w-6 h-6`} onClick={() => setopen(!open)}>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+            </svg>
+
+            <div >
+                <img src="gradia-assets/images/Logomark.png" alt="Logo" class={`w-20 duration-300 ${open && "rotate-[360deg]"}   `} />
+            </div>
+            <ul class="pt-2">
+                {Menus.map(menu => (
+                    <li class="flex text-gray-500 text-sm items-center gap-x-4 cursor-pointer p-2 hover:bg-light-red" onClick={() => handleTitleClick(menu.title)}>
+                        <img src={menu.icon} alt="icons" class={`relative ${!open ? "w-5" : "w-6"}`} />
+                        <span class={`text-base font-medium flex-1 ${!open && "hidden"}`}>{menu.title}</span>
+                    </li>
+                ))}
+            </ul>
+
+        </div>
+    )
+}
+
+export default Sidebar

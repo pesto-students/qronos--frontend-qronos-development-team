@@ -1,0 +1,7 @@
+const USER_DETAILS = "USER_DETAILS"
+const DATABASE_BASE_DETAILS = "DATABASE_BASE_DETAILS"
+
+export const LocalStorageKeys = {
+    USER_DETAILS,
+    DATABASE_BASE_DETAILS
+}
